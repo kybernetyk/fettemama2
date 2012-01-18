@@ -8,14 +8,11 @@ all:	blog
 
 test: clean all run
 
-blog: ccfiles
-	$(CC) $(LIBS) *.o -o $(EXECNAME)
-
-ccfiles:
-	$(CC) $(CFLAGS) *.cc
+blog:
+	$(CC) $(CFLAGS) *.cc -o $(EXECNAME)
 
 clean:
 	rm -rf *.o $(EXECNAME)
 
-run:
+run: blog
 	./blog
