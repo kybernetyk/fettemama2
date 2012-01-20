@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1326910723 source:/home/xr0/fettemama2/src/main.cc
+	<stdio.h>
+	"lipido.h"
+
+1326906174 /home/xr0/fettemama2/src/lipido.h
+	"response.h"
+	"request.h"
+	"context.h"
+	"server.h"
+
+1326909059 /home/xr0/fettemama2/src/response.h
+	<string>
+	"lipido.h"
+
+1326905606 /home/xr0/fettemama2/src/request.h
+
+1327083995 /home/xr0/fettemama2/src/context.h
+	<memory>
+	"lipido.h"
+
+1327083664 /home/xr0/fettemama2/src/server.h
+	<map>
+	<string>
+	<functional>
+	"lipido.h"
+
+1326909057 source:/home/xr0/fettemama2/src/response.cc
+	"lipido.h"
+
+1327083868 source:/home/xr0/fettemama2/src/server.cc
+	<memory>
+	"server.h"
+
