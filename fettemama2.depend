@@ -1,34 +1,44 @@
 # depslib dependency file v1.0
-1326910723 source:/home/xr0/fettemama2/src/main.cc
+1327682409 source:/home/xr0/fettemama2/src/main.cc
 	<stdio.h>
-	"lipido.h"
-
-1326906174 /home/xr0/fettemama2/src/lipido.h
-	"response.h"
-	"request.h"
-	"context.h"
-	"server.h"
-
-1326909059 /home/xr0/fettemama2/src/response.h
-	<string>
-	"lipido.h"
-
-1326905606 /home/xr0/fettemama2/src/request.h
-
-1327083995 /home/xr0/fettemama2/src/context.h
 	<memory>
 	"lipido.h"
 
-1327083664 /home/xr0/fettemama2/src/server.h
+1327682546 /home/xr0/fettemama2/src/lipido.h
+	"response.h"
+	"request.h"
+	"context.h"
+	"session.h"
+	"server.h"
+
+1327681027 /home/xr0/fettemama2/src/response.h
+	<string>
+	"lipido.h"
+
+1327681031 /home/xr0/fettemama2/src/request.h
+
+1327682476 /home/xr0/fettemama2/src/context.h
+	<memory>
+	"lipido.h"
+
+1327681795 /home/xr0/fettemama2/src/server.h
+	<memory>
 	<map>
 	<string>
 	<functional>
 	"lipido.h"
 
-1326909057 source:/home/xr0/fettemama2/src/response.cc
+1327681043 source:/home/xr0/fettemama2/src/response.cc
 	"lipido.h"
 
-1327083868 source:/home/xr0/fettemama2/src/server.cc
+1327682317 source:/home/xr0/fettemama2/src/server.cc
 	<memory>
 	"server.h"
+
+1327682169 /home/xr0/fettemama2/src/web_session.h
+
+1327682179 source:/home/xr0/fettemama2/src/web_session.cc
+	"web_session.h"
+
+1327682169 /home/xr0/fettemama2/src/session.h
 

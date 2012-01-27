@@ -32,7 +32,14 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="main.cpp" />
+		<Unit filename="src/context.h" />
+		<Unit filename="src/lipido.h" />
+		<Unit filename="src/main.cc" />
+		<Unit filename="src/request.h" />
+		<Unit filename="src/response.cc" />
+		<Unit filename="src/response.h" />
+		<Unit filename="src/server.cc" />
+		<Unit filename="src/server.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
