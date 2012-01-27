@@ -27,12 +27,12 @@ namespace lipido {
 	}
 
 	void WebServer::handleEventCallback(evhttp_request *request) {
-		printf("handling callback!\n");
+		printf(">>> handling callback!\n");
 
 		const evhttp_uri *uri = evhttp_request_get_evhttp_uri(request);
 
 		std::string s_uri(evhttp_uri_get_path(uri));
-		printf("URI is %s\n", s_uri.c_str());
+		printf(">>> URI is %s\n", s_uri.c_str());
 
 		WebServerHandler handler = nullptr;
 		if (evhttp_request_get_command(request) == EVHTTP_REQ_GET) {
@@ -42,7 +42,8 @@ namespace lipido {
 		}
 
 		if (!handler) {
-			evhttp_send_reply(request, 501, "U SUCKS!", NULL);
+			printf(">>> no handler for URI %s found. 404\n", s_uri.c_str());
+			evhttp_send_reply(request, 404, "U SUCKS!", NULL);
 			return;
 		}
 
@@ -51,15 +52,16 @@ namespace lipido {
 		WebContext w_ctx(*this, w_req, w_session);
 		auto resp = handler(w_ctx);
 
+		printf(">>> response lenght %i\n", resp.body.length());
 		evhttp_add_header(evhttp_request_get_output_headers(request),
 							"Content-Type", "text/html");
 
 		evbuffer *replbuf = evbuffer_new();
-		//evbuffer_add_printf(replbuf, "we handled: %s. kthx!", s_uri.c_str());
-
 		evbuffer_add_printf(replbuf,"%s", resp.body.c_str());
 
+		printf(">>> sending response ... ");
 		evhttp_send_reply(request, 200, "OK", replbuf);
+		printf("ok\n");
 
 		if (replbuf)
 			evbuffer_free(replbuf);
