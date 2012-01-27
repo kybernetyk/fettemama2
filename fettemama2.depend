@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1327682409 source:/home/xr0/fettemama2/src/main.cc
+1327683614 source:/home/xr0/fettemama2/src/main.cc
 	<stdio.h>
 	<memory>
 	"lipido.h"
@@ -31,7 +31,7 @@
 1327681043 source:/home/xr0/fettemama2/src/response.cc
 	"lipido.h"
 
-1327682317 source:/home/xr0/fettemama2/src/server.cc
+1327682627 source:/home/xr0/fettemama2/src/server.cc
 	<memory>
 	"server.h"
 
@@ -41,4 +41,7 @@
 	"web_session.h"
 
 1327682169 /home/xr0/fettemama2/src/session.h
+
+1327682541 source:/home/xr0/fettemama2/src/session.cc
+	"session.h"
 

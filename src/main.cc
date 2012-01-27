@@ -11,8 +11,13 @@ lipido::WebResponse test_handler(lipido::WebContext &context) {
 
 
 int main(int argc, char **argv) {
+	std::shared_ptr<void> defer(nullptr, [](void*) {
+								printf("thx and bai\n");
+								});
+
 	printf("starting fettemama 2.0 ...\n");
-	auto server = std::shared_ptr<lipido::WebServer>(new lipido::WebServer());
+
+	auto server = lipido::WebServer();
 
 	/*
 	lipido::server::add_get_handler(server, "/", [](lipido::context::context &ctx) -> lipido::response_t {
@@ -20,7 +25,8 @@ int main(int argc, char **argv) {
 			return lipido::response::make("LOL!");
 			});
 	*/
-	server->addGetHandler("/", test_handler);
-	server->run(8080);
+	server.addGetHandler("/", test_handler);
+
+	server.run(8080);
 }
 
