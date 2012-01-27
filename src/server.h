@@ -22,9 +22,16 @@ namespace lipido {
 		void addGetHandler(std::string URI, WebServerHandler handler);
 		void run(unsigned short port);
 
+	public:
+		void createMainSocket(unsigned short port);
+
+		void handleConnection(int clientSockFD);
+
 	private:
 		std::map<std::string, WebServerHandler> m_getHandlers;
 		std::map<std::string, WebServerHandler> m_postHandlers;
+
+		int m_mainSocketFD;
 	};
 
 }

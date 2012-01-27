@@ -21,7 +21,7 @@
 	<memory>
 	"lipido.h"
 
-1327681795 /home/xr0/fettemama2/src/server.h
+1327687342 /home/xr0/fettemama2/src/server.h
 	<memory>
 	<map>
 	<string>
@@ -31,9 +31,16 @@
 1327681043 source:/home/xr0/fettemama2/src/response.cc
 	"lipido.h"
 
-1327682627 source:/home/xr0/fettemama2/src/server.cc
+1327687914 source:/home/xr0/fettemama2/src/server.cc
 	<memory>
 	"server.h"
+	<strings.h>
+	<unistd.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netdb.h>
+	<thread>
 
 1327682169 /home/xr0/fettemama2/src/web_session.h
 
