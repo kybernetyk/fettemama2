@@ -8,6 +8,9 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include <thread>
+#include <future>
+#include <vector>
+#include <fcntl.h>
 
 namespace lipido {
 
@@ -31,11 +34,13 @@ namespace lipido {
 
 		printf("socket created: %i\n", m_mainSocketFD);
 
+		std::vector<std::thread> threadGroup;
 		for (;;) {
 			sockaddr_in clientAddr;
 			socklen_t clientAddrLen = sizeof(clientAddr);
 
 			int newSockFD = accept(m_mainSocketFD, (struct sockaddr*)&clientAddr, &clientAddrLen);
+			fcntl(newSockFD, F_SETFL, O_NONBLOCK);
 			//printf("got client with len: %i\n", clientAddrLen);
 			char hostname[256];
 			char servname[256];
@@ -46,8 +51,11 @@ namespace lipido {
 						0);
 			printf("connection => %s:%s\n", hostname, servname);
 
-			std::thread t(&WebServer::handleConnection, this, newSockFD);
-			t.join();
+			//std::thread t(&WebServer::handleConnection, this, newSockFD);
+			//threadGroup.push_back(std::thread(&WebServer::handleConnection, this, newSockFD));
+			//t.join();
+			std::async(std::launch::async, &WebServer::handleConnection, this, newSockFD);
+			//handleConnection(newSockFD);
 		}
 
 
@@ -94,15 +102,17 @@ namespace lipido {
 	}
 
 	void WebServer::handleConnection(int clientSockFD) {
-		printf("lol!\n");
+		std::shared_ptr<void> defer(nullptr, [clientSockFD](void *){
+										printf("closing sock %i!\n", clientSockFD);
+										close(clientSockFD);
+									});
 		for (;;) {
 			char buf[4096];
 			bzero(buf, 4096);
 
 			int n = read(clientSockFD, buf, 4096);
-			printf("received:\n-----------------------------------\n%s\n-------------------------\n", buf);
-			if (n == 0) {
-				close(clientSockFD);
+			printf("received: %i byes\n", n);
+			if (n == 0 || n == -1) {
 				return;
 			}
 		}
