@@ -79,14 +79,6 @@ namespace lipido {
 	void WebServer::run(unsigned short port) {
 		printf("server %p listening on port %i ...\n",this, port);
 
-		//createMainSocket(port);
-		std::shared_ptr<void> defer(nullptr, [m_mainSocketFD](void*){
-									printf("closing socket FD: %i\n", m_mainSocketFD);
-									close(m_mainSocketFD);
-									});
-
-		printf("socket created: %i\n", m_mainSocketFD);
-
 		//shamelessly stolen from the libevent http sample
 		event_base *base;
 		evhttp *http;
@@ -100,64 +92,5 @@ namespace lipido {
 		handle = evhttp_bind_socket_with_handle(http, "0.0.0.0", port);
 
 		event_base_dispatch(base);
-
-/*
-		printf("calling handler for / ...\n\t");
-		auto h = m_getHandlers["/"];
-		if (h) {
-			WebRequest req; //= the request we got from the client
-			WebSession sess; // = retrieve session from cookies()
-			WebContext ctx(*this, req, sess);
-			auto response = h(ctx);
-
-			//send(response)
-
-		} else {
-			throw "no handler for / found!";
-		}
-
-		printf("ok. self test succeeded. let's serve!\n");
-
-		printf("server %p died\n", this);
-*/
-	}
-
-	void WebServer::createMainSocket(unsigned short port) {
-		m_mainSocketFD = socket(AF_INET, SOCK_STREAM, 0);
-		if (m_mainSocketFD < 0) {
-			throw "couldn't create socket!";
-		}
-
-		sockaddr_in server_addr;
-		bzero((char *)&server_addr, sizeof(server_addr));
-
-		server_addr.sin_family = AF_INET;
-		server_addr.sin_addr.s_addr = INADDR_ANY;
-		server_addr.sin_port = htons(port);
-
-		if (bind(m_mainSocketFD, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
-			throw std::string("couldn't bind socket!");
-		}
-
-		if (listen(m_mainSocketFD, 5) < 0) {
-			throw std::string("couldn't listen!");
-		}
-	}
-
-	void WebServer::handleConnection(int clientSockFD) {
-		std::shared_ptr<void> defer(nullptr, [clientSockFD](void *){
-										printf("closing sock %i!\n", clientSockFD);
-										close(clientSockFD);
-									});
-		for (;;) {
-			char buf[4096];
-			bzero(buf, 4096);
-
-			int n = read(clientSockFD, buf, 4096);
-			printf("received: %i byes\n", n);
-			if (n == 0 || n == -1) {
-				return;
-			}
-		}
 	}
 }
