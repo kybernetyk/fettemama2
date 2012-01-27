@@ -10,6 +10,8 @@
 #include <functional>
 #include "lipido.h"
 
+		struct evhttp_request;
+
 namespace lipido {
 
 	class WebServer {
@@ -22,7 +24,9 @@ namespace lipido {
 		void addGetHandler(std::string URI, WebServerHandler handler);
 		void run(unsigned short port);
 
-	public:
+		void handleEventCallback(evhttp_request *request);
+
+	protected:
 		void createMainSocket(unsigned short port);
 
 		void handleConnection(int clientSockFD);

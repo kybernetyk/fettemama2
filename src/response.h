@@ -8,6 +8,8 @@ namespace lipido {
 		//http code
 		//body
 		//etc
+
+		std::string body;
 	};
 
 }
