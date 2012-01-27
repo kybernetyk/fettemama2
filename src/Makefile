@@ -1,5 +1,5 @@
 CC=g++
-LIBS=-lcurl -pthread
+LIBS=-lcurl -pthread -levent
 CFLAGS=-std=c++0x
 
 EXECNAME=blog
