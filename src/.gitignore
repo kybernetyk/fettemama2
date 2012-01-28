@@ -1,4 +1,5 @@
 a.out
 *.o
 blog
+blog.dSYM
 core
