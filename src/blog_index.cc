@@ -4,37 +4,32 @@
 
 lipido::WebResponse handleIndex(lipido::WebContext &ctx) {
 	lipido::WebResponse response;
-
-	//1. get list of posts
-	//2. render posts
-	//3. profit
-	//4. ???
-
 	MySQLDatabase db;
-
 
 	response.body = "<html><head><title>fefemama</title></head><body>";
 	response.body += "<h1>Welcome To The Thunderdome</h1>";
+	response.body += "<ul>";
 
-	char buf[512];
-	sprintf(buf, "<i>running mysql %s</i>", db.version().c_str());
-	response.body += std::string(buf);
+	auto posts = db.query("select content, DATE_FORMAT(timestamp,'%a %b %e %Y') as timestamp from posts order by id desc limit 20;");
 
-	response.body += "<div class='content'>";
-
-	auto posts = db.query("select * from posts order by id desc;");
-
+	std::string day = "";
 	for (auto post : posts) {
-		response.body += "<li>(";
-		response.body += post["id"];
-		response.body += ", ";
-		response.body += post["timestamp"];
-		response.body += "): ";
+		std::string postdate = post["timestamp"];
+		if (day != postdate) {
+			day = postdate;
+			response.body += "</ul>";
+			response.body += "<h2>";
+			response.body += postdate;
+			response.body += "</h2><ul>";
+		}
+		response.body += "<li><p>";
 		response.body += post["content"];
-		response.body += "</li>";
+		response.body += "</p></li>";
 	}
-/*
-	for (std::map<std::string,std::string> row : rows) {
+
+	response.body += "</ul>";
+
+/*	for (std::map<std::string,std::string> row : posts) {
 		for (auto k : row) {
 			char buf[4096];
 
@@ -44,7 +39,6 @@ lipido::WebResponse handleIndex(lipido::WebContext &ctx) {
 	}
 */
 
-	response.body += "</div>";
 	response.body += "</body></html>";
 
 	return response;
