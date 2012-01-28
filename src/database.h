@@ -2,6 +2,9 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <my_global.h>
+#include <mysql.h>
+
 
 class MySQLDatabase {
 public:
@@ -12,4 +15,7 @@ public:
 	//-> a vector of rows. (each row itself is a vector of strings)
 	std::vector<std::map<std::string, std::string>> query(std::string qry);
 	std::string version();
+
+protected:
+	MYSQL *m_dbConnection;
 };
