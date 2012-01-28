@@ -8,8 +8,18 @@ namespace lipido {
 		//http code
 		//body
 		//etc
-
+		int httpCode;
+		std::string contentType;
 		std::string body;
+
+		bool deliverFile;
+		std::string path;
+
+		WebResponse() {
+			httpCode = 200;
+			deliverFile = false;
+			contentType = "text/html";
+		}
 	};
 
 }

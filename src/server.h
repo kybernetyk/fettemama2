@@ -18,7 +18,7 @@ namespace lipido {
 		typedef std::function<WebResponse (lipido::WebContext &context)> WebServerHandler;
 
 	public:
-		WebServer() {}
+		WebServer();
 		~WebServer() {}
 		void addPostHandler(std::string URI, WebServerHandler handler);
 		void addGetHandler(std::string URI, WebServerHandler handler);
