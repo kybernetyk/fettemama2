@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="src/context.h" open="1" top="1" tabpos="4">
-		<Cursor position="212" topLine="0" />
+	<File name="src/context.h" open="0" top="0" tabpos="4">
+		<Cursor position="221" topLine="0" />
 	</File>
-	<File name="src/main.cc" open="1" top="0" tabpos="1">
-		<Cursor position="524" topLine="0" />
+	<File name="src/lipido.h" open="1" top="0" tabpos="2">
+		<Cursor position="88" topLine="0" />
 	</File>
-	<File name="src/server.cc" open="1" top="0" tabpos="3">
-		<Cursor position="92" topLine="0" />
+	<File name="src/main.cc" open="1" top="0" tabpos="4">
+		<Cursor position="712" topLine="0" />
 	</File>
-	<File name="src/server.h" open="1" top="0" tabpos="2">
-		<Cursor position="519" topLine="0" />
+	<File name="src/request.h" open="0" top="0" tabpos="0">
+		<Cursor position="59" topLine="0" />
+	</File>
+	<File name="src/response.cc" open="0" top="0" tabpos="0">
+		<Cursor position="21" topLine="0" />
+	</File>
+	<File name="src/response.h" open="0" top="0" tabpos="0">
+		<Cursor position="94" topLine="0" />
+	</File>
+	<File name="src/server.cc" open="1" top="1" tabpos="3">
+		<Cursor position="4509" topLine="127" />
+	</File>
+	<File name="src/server.h" open="0" top="0" tabpos="2">
+		<Cursor position="355" topLine="0" />
+	</File>
+	<File name="src/session.cc" open="1" top="0" tabpos="1">
+		<Cursor position="10" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

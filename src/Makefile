@@ -12,7 +12,7 @@ blog:
 	$(CC) $(CFLAGS) *.cc $(LIBS) -o $(EXECNAME)
 
 clean:
-	rm -rf *.o $(EXECNAME)
+	rm -rf *.o $(EXECNAME) core
 
 run: blog
 	./blog
