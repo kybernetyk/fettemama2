@@ -1,0 +1,11 @@
+fettemama 2
+-----------
+A retarded blogging engine written in C++0x ... because I'm too lazy to do real work.
+
+* dependencies:
+	- libevent
+	- mysql libs
+
+* license:
+	- gpl v3
+		(c) leon szpilewski in 2012, leon.szpilewski@gmail.com
