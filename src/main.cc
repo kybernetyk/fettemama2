@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <memory>
 #include "lipido.h"
+#include "blog_index.h"
 
 lipido::WebResponse test_handler(lipido::WebContext &context) {
     lipido::WebResponse resp;
@@ -18,7 +19,7 @@ int main(int argc, char **argv) {
 
     auto server = lipido::WebServer();
 
-    server.addGetHandler("/", test_handler);
+    server.addGetHandler("/", handleIndex);
     server.addGetHandler("/fefe", [](lipido::WebContext &context) -> lipido::WebResponse {
         printf("fefe ist fett\n");
         lipido::WebResponse r;
