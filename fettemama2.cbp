@@ -13,8 +13,10 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add option="-I/usr/include/mysql -fPIC -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -fno-strict-aliasing -DBIG_JOINS=1 -fomit-frame-pointer  -g" />
 				</Compiler>
 				<Linker>
+					<Add option="-L/usr/lib -lmysqlclient -lpthread -lz -lm -lrt -lssl -lcrypto -ldl" />
 					<Add library="pthread" />
 					<Add library="libevent" />
 				</Linker>
@@ -36,7 +38,11 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="src/blog_index.cc" />
+		<Unit filename="src/blog_index.h" />
 		<Unit filename="src/context.h" />
+		<Unit filename="src/database.cc" />
+		<Unit filename="src/database.h" />
 		<Unit filename="src/lipido.h" />
 		<Unit filename="src/main.cc" />
 		<Unit filename="src/request.h" />
