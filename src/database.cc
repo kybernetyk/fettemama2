@@ -1,4 +1,5 @@
 #include "database.h"
+#include <memory>
 
 MySQLDatabase::MySQLDatabase() {
     //mysql connect
@@ -27,11 +28,13 @@ std::vector<std::map<std::string, std::string>> MySQLDatabase::query(std::string
 
     mysql_query(m_dbConnection, qry.c_str());
     MYSQL_RES *result = mysql_store_result(m_dbConnection);
+		std::shared_ptr<void> defer(nullptr, [result](void*) {
+					mysql_free_result(result);
+				});
     int num_fields = mysql_num_fields(result);
 
     MYSQL_ROW row;
     MYSQL_FIELD *fields = mysql_fetch_fields(result);
-
 
     while ((row = mysql_fetch_row(result))) {
         std::map<std::string, std::string> cur_row;
