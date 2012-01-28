@@ -84,8 +84,13 @@ void WebServer::handleEventCallback(evhttp_request *request) {
     printf(">>> handling callback!\n");
 
     const evhttp_uri *uri = evhttp_request_get_evhttp_uri(request);
+	const char *tmp_path = evhttp_uri_get_path(uri);
+	char *tmp_uri = evhttp_uridecode(tmp_path, 0, NULL);
+    std::shared_ptr<void> defer0(nullptr, [tmp_uri](void*) {
+								free(tmp_uri);
+								});
 
-    std::string s_uri(evhttp_uridecode(evhttp_uri_get_path(uri), 0, NULL));
+    std::string s_uri(tmp_uri);
     printf(">>> URI is %s\n", s_uri.c_str());
 
     //prevent shit like /../../../etc/passwd
@@ -124,7 +129,7 @@ void WebServer::handleEventCallback(evhttp_request *request) {
     auto resp = handler(w_ctx);
 
     evbuffer *replbuf = evbuffer_new();
-    std::shared_ptr<void> defer(nullptr, [replbuf](void*) {
+    std::shared_ptr<void> defer1(nullptr, [replbuf](void*) {
         printf(">>> freeing reply buffer\n");
         evbuffer_free(replbuf);
     });
