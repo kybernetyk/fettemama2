@@ -12,6 +12,7 @@
 #include <future>
 #include <vector>
 #include <fcntl.h>
+#include <string.h>
 
 #include <event2/event.h>
 #include <event2/http.h>
@@ -27,14 +28,53 @@ void ev_http_callback(evhttp_request *req, void *server_instance) {
     me->handleEventCallback(req);
 }
 
+static const struct table_entry {
+    const char *extension;
+    const char *content_type;
+} content_type_table[] = {
+    { "txt", "text/plain" },
+    { "c", "text/plain" },
+    { "h", "text/plain" },
+    { "html", "text/html" },
+    { "htm", "text/htm" },
+    { "css", "text/css" },
+    { "gif", "image/gif" },
+    { "jpg", "image/jpeg" },
+    { "jpeg", "image/jpeg" },
+    { "png", "image/png" },
+    { "pdf", "application/pdf" },
+    { "ps", "application/postsript" },
+    { NULL, NULL },
+};
+
+/* Try to guess a good content-type for 'path' */
+static const char *
+guess_content_type(const char *path) {
+    const char *last_period, *extension;
+    const struct table_entry *ent;
+    last_period = strrchr(path, '.');
+    if (!last_period || strchr(last_period, '/'))
+        goto not_found; /* no exension */
+    extension = last_period + 1;
+    for (ent = &content_type_table[0]; ent->extension; ++ent) {
+        if (!evutil_ascii_strcasecmp(ent->extension, extension))
+            return ent->content_type;
+    }
+
+not_found:
+    return "application/misc";
+}
+
+
 WebResponse defaultHandler(WebContext &ctx) {
     WebResponse response;
-    response.contentType = "text/html";
     response.deliverFile = true;
     response.path = ctx.request.URI;
-
+	response.contentType = guess_content_type(response.path.c_str());
+	printf(">>> default handler for %s with type '%s'\n", response.path.c_str(), response.contentType.c_str());
     return response;
 }
+
 
 WebServer::WebServer() {
     m_getHandlers["*"] = defaultHandler;
@@ -45,9 +85,17 @@ void WebServer::handleEventCallback(evhttp_request *request) {
 
     const evhttp_uri *uri = evhttp_request_get_evhttp_uri(request);
 
-    std::string s_uri(evhttp_uri_get_path(uri));
+    std::string s_uri(evhttp_uridecode(evhttp_uri_get_path(uri), 0, NULL));
     printf(">>> URI is %s\n", s_uri.c_str());
 
+    //prevent shit like /../../../etc/passwd
+    if (strstr(s_uri.c_str(), "..")) {
+        printf(">>> .. in URI ... we're fucked\n");
+        evhttp_send_error(request, HTTP_BADREQUEST, "fuck off");
+        return;
+    }
+
+    //get handler for URI
     WebServerHandler handler = nullptr;
     if (evhttp_request_get_command(request) == EVHTTP_REQ_GET) {
         handler = m_getHandlers[s_uri];
@@ -63,7 +111,7 @@ void WebServer::handleEventCallback(evhttp_request *request) {
 
     if (!handler) {
         printf(">>> no handler for URI %s found. 404\n", s_uri.c_str());
-        evhttp_send_reply(request, 404, "U SUCKS!", NULL);
+        evhttp_send_error(request, 404, "your face sucks");
         return;
     }
 
@@ -77,7 +125,7 @@ void WebServer::handleEventCallback(evhttp_request *request) {
 
     evbuffer *replbuf = evbuffer_new();
     std::shared_ptr<void> defer(nullptr, [replbuf](void*) {
-		printf(">>> freeing reply buffer\n");
+        printf(">>> freeing reply buffer\n");
         evbuffer_free(replbuf);
     });
 
@@ -89,13 +137,24 @@ void WebServer::handleEventCallback(evhttp_request *request) {
         printf(">>> trying to send file '%s'\n", path.c_str());
 
         struct stat st;
-        if (stat(path.c_str(), &st) != 0)
-            goto err404;
+        if (stat(path.c_str(), &st) != 0) {
+            printf(">>> sending 404 ...");
+            evhttp_send_error(request, 404, "your face sucks");
+            printf("ok\n");
+            return;
+
+        }
+
         size_t size = st.st_size;
 
         int fd = open(path.c_str(), O_RDONLY);
-        if (fd < 0)
-            goto err404;
+        if (fd < 0) {
+            printf(">>> sending 404 ...");
+            evhttp_send_error(request, 404, "your face sucks");
+            printf("ok\n");
+            return;
+
+        }
 
         evbuffer_add_file(replbuf, fd, 0, size);
     }
@@ -107,16 +166,6 @@ void WebServer::handleEventCallback(evhttp_request *request) {
     evhttp_send_reply(request, resp.httpCode, "OK", replbuf);
     printf("ok\n");
     return;
-
-err404:
-    printf(">>> sending 404 ...");
-	evhttp_send_error(request, 404, "your face sucks");
-	printF("ok\n");
-
-	//evbuffer_add_printf(replbuf, "The document at %s couldn't be found!", s_uri.c_str());
-    //evhttp_add_header(evhttp_request_get_output_headers(request),
-    //                  "Content-Type", "text/html");
-    //evhttp_send_reply(request, 404, "Document Not Found", replbuf);
 }
 
 void WebServer::addGetHandler(std::string URI, WebServerHandler handler) {
