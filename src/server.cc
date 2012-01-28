@@ -130,7 +130,6 @@ void WebServer::handleEventCallback(evhttp_request *request) {
 
     evbuffer *replbuf = evbuffer_new();
     std::shared_ptr<void> defer1(nullptr, [replbuf](void*) {
-        printf(">>> freeing reply buffer\n");
         evbuffer_free(replbuf);
     });
 
@@ -168,7 +167,7 @@ void WebServer::handleEventCallback(evhttp_request *request) {
     printf(">>> sending response ... ");
     evhttp_add_header(evhttp_request_get_output_headers(request),
                       "Content-Type", resp.contentType.c_str());
-    evhttp_send_reply(request, resp.httpCode, "OK", replbuf);
+    evhttp_send_reply(request, resp.httpCode, resp.httpReason.c_str(), replbuf);
     printf("ok\n");
     return;
 }

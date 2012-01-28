@@ -5,10 +5,9 @@
 namespace lipido {
 
 	struct WebResponse {
-		//http code
-		//body
-		//etc
 		int httpCode;
+		std::string httpReason;
+
 		std::string contentType;
 		std::string body;
 
@@ -17,6 +16,7 @@ namespace lipido {
 
 		WebResponse() {
 			httpCode = 200;
+			httpReason = "OK";
 			deliverFile = false;
 			contentType = "text/html";
 		}
