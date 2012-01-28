@@ -70,8 +70,8 @@ WebResponse defaultHandler(WebContext &ctx) {
     WebResponse response;
     response.deliverFile = true;
     response.path = ctx.request.URI;
-	response.contentType = guess_content_type(response.path.c_str());
-	printf(">>> default handler for %s with type '%s'\n", response.path.c_str(), response.contentType.c_str());
+    response.contentType = guess_content_type(response.path.c_str());
+    printf(">>> default handler for %s with type '%s'\n", response.path.c_str(), response.contentType.c_str());
     return response;
 }
 
@@ -84,11 +84,11 @@ void WebServer::handleEventCallback(evhttp_request *request) {
     printf(">>> handling callback!\n");
 
     const evhttp_uri *uri = evhttp_request_get_evhttp_uri(request);
-	const char *tmp_path = evhttp_uri_get_path(uri);
-	char *tmp_uri = evhttp_uridecode(tmp_path, 0, NULL);
+    const char *tmp_path = evhttp_uri_get_path(uri);
+    char *tmp_uri = evhttp_uridecode(tmp_path, 0, NULL);
     std::shared_ptr<void> defer0(nullptr, [tmp_uri](void*) {
-								free(tmp_uri);
-								});
+        free(tmp_uri);
+    });
 
     std::string s_uri(tmp_uri);
     printf(">>> URI is %s\n", s_uri.c_str());
