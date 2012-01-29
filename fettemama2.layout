@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="src/blog_index.cc" open="1" top="1" tabpos="4">
-		<Cursor position="576" topLine="17" />
+	<File name="src/blog_index.cc" open="1" top="1" tabpos="3">
+		<Cursor position="551" topLine="8" />
 	</File>
-	<File name="src/blog_index.h" open="1" top="0" tabpos="2">
+	<File name="src/blog_index.h" open="0" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="src/context.h" open="0" top="0" tabpos="4">
 		<Cursor position="221" topLine="0" />
 	</File>
 	<File name="src/database.cc" open="1" top="0" tabpos="1">
-		<Cursor position="1035" topLine="18" />
+		<Cursor position="1151" topLine="17" />
 	</File>
-	<File name="src/database.h" open="1" top="0" tabpos="3">
-		<Cursor position="241" topLine="0" />
+	<File name="src/database.h" open="1" top="0" tabpos="2">
+		<Cursor position="106" topLine="0" />
 	</File>
 	<File name="src/lipido.h" open="0" top="0" tabpos="2">
 		<Cursor position="88" topLine="0" />
