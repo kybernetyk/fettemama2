@@ -1,0 +1,17 @@
+CC=g++-4.6.2
+LIBS=-lcurl -pthread -levent -L/usr/local/mysql-5.5.20-osx10.6-x86_64/lib -lmysqlclient -lpthread -lz -lm -lssl -lcrypto -ldl
+CFLAGS=-std=c++0x -I/usr/local/mysql-5.5.20-osx10.6-x86_64/include -fPIC -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -fno-strict-aliasing -DBIG_JOINS=1 -fomit-frame-pointer  -g
+EXECNAME=blog
+
+all:	blog
+
+test: clean all run
+
+blog:
+	$(CC) $(CFLAGS) *.cc $(LIBS) -o $(EXECNAME)
+
+clean:
+	rm -rf *.o $(EXECNAME) core
+
+run: blog
+	./blog
