@@ -3,6 +3,7 @@ LIBS=-lcurl -pthread -levent -L/usr/local/mysql-5.5.20-osx10.6-x86_64/lib -lmysq
 CFLAGS=-std=c++0x -I/usr/local/mysql-5.5.20-osx10.6-x86_64/include -fPIC -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -fno-strict-aliasing -DBIG_JOINS=1 -fomit-frame-pointer  -g
 EXECNAME=blog
 
+.PHONY: all
 all:	blog
 
 test: clean all run
