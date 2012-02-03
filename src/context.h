@@ -7,9 +7,9 @@ namespace lipido {
 		struct WebRequest;
 		struct WebSession;
 		struct WebContext {
-			const WebServer &server;
-			const WebRequest &request;
-			const WebSession &session;
+			WebServer &server;
+			WebRequest &request;
+			WebSession &session;
 
 			WebContext (WebServer &srv, WebRequest &req, WebSession &sess) : server(srv), request(req), session(sess) {}
 		};
