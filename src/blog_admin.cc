@@ -10,7 +10,7 @@ lipido::WebResponse handleNewPost(lipido::WebContext &ctx) {
 	response.body += "<h1>Welcome To The Thunderdome</h1>";
 	response.body += "<ul>";
 
-for (auto param : ctx.request.params) {
+	for (auto param : ctx.request.params) {
 		response.body += param.first;
 		response.body += " -> ";
 		response.body += param.second;
