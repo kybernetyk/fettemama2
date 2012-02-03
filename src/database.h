@@ -7,17 +7,17 @@
 
 
 class MySQLDatabase {
-public:
-	MySQLDatabase();
-	~MySQLDatabase();
+	public:
+		MySQLDatabase();
+		~MySQLDatabase();
 
-	//returns a vector of vectors of strings
-	//-> a vector of rows. (each row itself is a vector of strings)
-	std::vector<std::map<std::string, std::string>> query(std::string qry);
-	std::string version();
+		//returns a vector of vectors of strings
+		//-> a vector of rows. (each row itself is a vector of strings)
+		std::vector<std::map<std::string, std::string>> query(std::string qry);
+		std::string version();
 
-	std::string escape(std::string str);
+		std::string escape(std::string str);
 
-protected:
-	MYSQL *m_dbConnection;
+	protected:
+		MYSQL *m_dbConnection;
 };

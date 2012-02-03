@@ -3,19 +3,19 @@
 #include "admin_password"
 
 lipido::WebResponse handleNewPost(lipido::WebContext &ctx) {
-    lipido::WebResponse response;
-    MySQLDatabase db;
+	lipido::WebResponse response;
+	MySQLDatabase db;
 
-    response.body = "<html><head><title>fefemama</title></head><body>";
-    response.body += "<h1>Welcome To The Thunderdome</h1>";
-    response.body += "<ul>";
+	response.body = "<html><head><title>fefemama</title></head><body>";
+	response.body += "<h1>Welcome To The Thunderdome</h1>";
+	response.body += "<ul>";
 
-    for (auto param : ctx.request.params) {
+for (auto param : ctx.request.params) {
 		response.body += param.first;
 		response.body += " -> ";
 		response.body += param.second;
 		response.body += "<br>";
-    }
+	}
 
 	if (ctx.request.params["password"] != admin_password) {
 		response.body = "LOL UR SUCK!<br>";
@@ -25,6 +25,7 @@ lipido::WebResponse handleNewPost(lipido::WebContext &ctx) {
 	std::string query = "insert into posts (content) values ('";
 	query += db.escape(ctx.request.params["content"]);
 	query += "');";
+
 	try {
 		db.query(query);
 	} catch (std::string &ex) {
@@ -33,5 +34,6 @@ lipido::WebResponse handleNewPost(lipido::WebContext &ctx) {
 		response.body = ex;
 		return response;
 	}
+
 	return response;
 }
