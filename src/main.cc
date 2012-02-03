@@ -9,6 +9,22 @@ lipido::WebResponse test_handler(lipido::WebContext &context) {
     return resp;
 }
 
+lipido::WebResponse post_handler(lipido::WebContext &context) {
+	lipido::WebResponse resp;
+	resp.body = "<pre>";
+	resp.body += "POST RESPONSE!\n";
+
+	for (auto param : context.request.params) {
+		resp.body += param.first;
+		resp.body += " -> ";
+		resp.body += param.second;
+		resp.body += "\n";
+	}
+
+	resp.body += "</pre>\n";
+	return resp;
+}
+
 
 int main(int argc, char **argv) {
     std::shared_ptr<void> defer(nullptr, [](void*) {
@@ -26,6 +42,7 @@ int main(int argc, char **argv) {
         r.body = "<h1>Fefe ist ein Ferkel!</h1> LOL!";
         return r;
     });
+		server.addPostHandler("/post", post_handler);
 
     server.run(8080);
 }

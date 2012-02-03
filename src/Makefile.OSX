@@ -8,6 +8,7 @@ all:	blog
 
 test: clean all run
 
+.PHONY: blog
 blog:
 	$(CC) $(CFLAGS) *.cc $(LIBS) -o $(EXECNAME)
 

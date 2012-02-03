@@ -102,6 +102,8 @@ void WebServer::handleEventCallback(evhttp_request *request) {
         return;
     }
 
+		WebRequest w_req;
+
     //get handler for URI
     WebServerHandler handler = nullptr;
     if (evhttp_request_get_command(request) == EVHTTP_REQ_GET) {
@@ -111,9 +113,11 @@ void WebServer::handleEventCallback(evhttp_request *request) {
         //which will read a file from static and send it
         if (!handler)
             handler = m_getHandlers["*"];
-
+    
+				w_req.params = extractGETParams(request);
     } else if (evhttp_request_get_command(request) == EVHTTP_REQ_POST) {
         handler = m_postHandlers[s_uri];
+				w_req.params = extractPOSTParams(request);
     }
 
     if (!handler) {
@@ -122,9 +126,7 @@ void WebServer::handleEventCallback(evhttp_request *request) {
         return;
     }
 
-    WebRequest w_req;
     w_req.URI = s_uri;
-    w_req.params = extractGETParams(evhttp_request_get_evhttp_uri(request));
 
 	//printf("params q: %s\n", w_req.params["q"].c_str());
     WebSession w_session;
@@ -184,19 +186,25 @@ void WebServer::addPostHandler(std::string URI, WebServerHandler handler) {
     m_postHandlers[URI] = handler;
 }
 
-std::map<std::string,std::string> WebServer::extractGETParams(const evhttp_uri *uri) {
-	//printf("| extracting GET params ...\n");
+std::map<std::string,std::string> WebServer::extractPOSTParams(evhttp_request *request) {
 	std::map<std::string, std::string> outParams;
 
+	
+
+	return outParams;
+}
+
+std::map<std::string,std::string> WebServer::extractGETParams(evhttp_request *request) {
+	std::map<std::string, std::string> outParams;
+
+	auto uri = evhttp_request_get_evhttp_uri(request);
 	auto query = evhttp_uri_get_query(uri);
 	if (!query)
 		return outParams;
-	//printf("query string '%s'\n", query);
 
 	evkeyvalq headers;
 	int iret = evhttp_parse_query_str(query, &headers);
 	if (iret != 0) {
-//		printf("can't parse query string! %i\n", iret);
 		return outParams;
 	}
 
@@ -206,7 +214,6 @@ std::map<std::string,std::string> WebServer::extractGETParams(const evhttp_uri *
 	header = header->next.tqe_next) {
 		std::string key = header->key;
 		std::string value = header->value;
-		//printf("key: %s = value: %s\n", key.c_str(), value.c_str());
 
 		outParams[key] = value;
 		printf(".");

@@ -30,7 +30,8 @@ namespace lipido {
 	protected:
 		void createMainSocket(unsigned short port);
 		void handleConnection(int clientSockFD);
-		std::map<std::string,std::string> extractGETParams(const evhttp_uri *uri);
+		std::map<std::string,std::string> extractGETParams(evhttp_request *request);
+		std::map<std::string,std::string> extractPOSTParams(evhttp_request *request);
 
 	private:
 		std::map<std::string, WebServerHandler> m_getHandlers;
