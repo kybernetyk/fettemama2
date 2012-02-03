@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta content="en" http-equiv="content-language" />
+
+    <title>fefemama 3.0 - kommentieren</title>
+
+    <style type="text/css" media="screen">
+		.content 
+		{
+			margin-top: 1.0em;
+			background-color: #EDF1F3;
+			font-family: "Helvetica,Arial,FreeSans";
+			color: #000000;
+			width: 600px;
+			margin-left: auto ;
+			margin-right: auto ;
+			padding-bottom: 1em;
+		}
+		
+		.codebox
+		{
+			width: 80%;
+			background-color: #000000;
+			color: #00ff00;
+			margin-left: auto ;
+			margin-right: auto ;
+			padding-left: 0.1em;
+			border: 1px solid #009900;
+						font-family: "Courier";
+		}
+		
+		.content .header
+		{
+			text-align: center;
+			font-size: 2.0em;
+		}
+		
+		.content p
+		{
+			margin-left: 1.0em;
+		}
+		 
+		/* ribbon css taken from: http://unindented.org/articles/2009/10/github-ribbon-using-css-transforms/ */
+		.ribbon 
+		{
+        background-color: #a00;
+        overflow: hidden;
+        /* top left corner */
+        position: absolute;
+        left: -3.5em;
+        top: 3.0em;
+        /* 45 deg ccw rotation */
+        -moz-transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+        /* shadow */
+        -moz-box-shadow: 0 0 1em #888;
+        -webkit-box-shadow: 0 0 1em #888;
+     }
+    .ribbon a 
+		{
+        border: 1px solid #faa;
+        color: #fff;
+        display: block;
+        font: bold 81.25% 'Helvetiva Neue', Helvetica, Arial, sans-serif;
+        margin: 0.05em 0 0.075em 0;
+        padding: 0.5em 3.5em;
+        text-align: center;
+        text-decoration: none;
+        /* shadow */
+        text-shadow: 0 0 0.5em #444;
+      }
+    </style>
+</head>
+
+<body>
+	<div class="content">
+		<div class="header">fefemama 3.0 admin konsole</div>
+		<p>
+		Ur leetness?
+		</p>
+		
+		
+			<form action="/new_post();" method="post">
+					<textarea rows="8" cols="80" id="content" name="content"></textarea><br>
+								<input id="what" type="hidden" value="post" name="what"><br>
+											<input type="submit" name="Submit" value="Submit">
+													</form>
+	</div> 
+</body>
+
+</html>
