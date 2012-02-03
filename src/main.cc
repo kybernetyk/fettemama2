@@ -15,7 +15,7 @@ lipido::WebResponse post_handler(lipido::WebContext &context) {
 	resp.body = "<pre>";
 	resp.body += "POST RESPONSE!\n";
 
-for (auto param : context.request.params) {
+	for (auto param : context.request.params) {
 		resp.body += param.first;
 		resp.body += " -> ";
 		resp.body += param.second;
