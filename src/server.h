@@ -11,6 +11,7 @@
 #include "lipido.h"
 
 		struct evhttp_request;
+		struct evhttp_uri;
 
 namespace lipido {
 
@@ -28,8 +29,8 @@ namespace lipido {
 
 	protected:
 		void createMainSocket(unsigned short port);
-
 		void handleConnection(int clientSockFD);
+		std::map<std::string,std::string> extractGETParams(const evhttp_uri *uri);
 
 	private:
 		std::map<std::string, WebServerHandler> m_getHandlers;

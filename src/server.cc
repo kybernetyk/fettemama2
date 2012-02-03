@@ -20,6 +20,8 @@
 #include <event2/util.h>
 #include <event2/keyvalq_struct.h>
 
+#include <sys/queue.h>
+
 namespace lipido {
 
 //ev callback
@@ -122,7 +124,9 @@ void WebServer::handleEventCallback(evhttp_request *request) {
 
     WebRequest w_req;
     w_req.URI = s_uri;
+    w_req.params = extractGETParams(evhttp_request_get_evhttp_uri(request));
 
+	//printf("params q: %s\n", w_req.params["q"].c_str());
     WebSession w_session;
     WebContext w_ctx(*this, w_req, w_session);
 
@@ -178,6 +182,38 @@ void WebServer::addGetHandler(std::string URI, WebServerHandler handler) {
 
 void WebServer::addPostHandler(std::string URI, WebServerHandler handler) {
     m_postHandlers[URI] = handler;
+}
+
+std::map<std::string,std::string> WebServer::extractGETParams(const evhttp_uri *uri) {
+	//printf("| extracting GET params ...\n");
+	std::map<std::string, std::string> outParams;
+
+	auto query = evhttp_uri_get_query(uri);
+	if (!query)
+		return outParams;
+	//printf("query string '%s'\n", query);
+
+	evkeyvalq headers;
+	int iret = evhttp_parse_query_str(query, &headers);
+	if (iret != 0) {
+//		printf("can't parse query string! %i\n", iret);
+		return outParams;
+	}
+
+	evkeyval *header;
+	for (header = headers.tqh_first;
+	header;
+	header = header->next.tqe_next) {
+		std::string key = header->key;
+		std::string value = header->value;
+		//printf("key: %s = value: %s\n", key.c_str(), value.c_str());
+
+		outParams[key] = value;
+		printf(".");
+	}
+
+	printf("ok!\n");
+	return outParams;
 }
 
 void WebServer::run(unsigned short port) {
