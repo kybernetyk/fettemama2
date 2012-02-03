@@ -45,7 +45,7 @@ lipido::WebResponse handleIndex(lipido::WebContext &ctx) {
 	if (ctx.request.params.size()) {
 		response.body += "GET params:<pre>\n";
 
-	for (auto param : ctx.request.params) {
+		for (auto param : ctx.request.params) {
 			response.body += param.first;
 			response.body += " -> ";
 			response.body += param.second;
