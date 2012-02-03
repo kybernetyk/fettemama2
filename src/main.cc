@@ -38,7 +38,8 @@ int main(int argc, char **argv) {
 
     server.addGetHandler("/", handleIndex);
 	server.addPostHandler("/new_post();", handleNewPost);
-#if 0
+
+/*
     server.addGetHandler("/fefe", [](lipido::WebContext &context) -> lipido::WebResponse {
         printf("fefe ist fett\n");
         lipido::WebResponse r;
@@ -46,7 +47,7 @@ int main(int argc, char **argv) {
         return r;
     });
 	server.addPostHandler("/post", post_handler);
-#endif
+*/
 
     server.run(8080);
 }

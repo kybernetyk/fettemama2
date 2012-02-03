@@ -154,7 +154,6 @@ void WebServer::handleEventCallback(evhttp_request *request) {
 
     w_req.URI = s_uri;
 
-    //printf("params q: %s\n", w_req.params["q"].c_str());
     WebSession w_session;
     WebContext w_ctx(*this, w_req, w_session);
 
@@ -229,10 +228,7 @@ std::map<std::string,std::string> WebServer::extractParams(const char *query) {
         std::string value = header->value;
 
         outParams[key] = value;
-        printf(".");
     }
-
-    printf("ok!\n");
     return outParams;
 }
 
@@ -247,7 +243,6 @@ void WebServer::run(unsigned short port) {
     //shamelessly stolen from the libevent http sample
     event_base *base;
     evhttp *http;
-  //  evhttp_bound_socket *handle;
 
     base = event_base_new();
     http = evhttp_new(base);

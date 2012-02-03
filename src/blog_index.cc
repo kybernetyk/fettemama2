@@ -14,7 +14,6 @@ lipido::WebResponse handleIndex(lipido::WebContext &ctx) {
 	try {
 		posts = db.query("select content, DATE_FORMAT(timestamp,'%a %b %e %Y') as timestamp from posts order by id desc limit 20;");
 	} catch (std::string &ex) {
-		printf("sql error: %s\n", ex.c_str());
 		response.body = ex;
 		response.httpCode = 501;
 		return response;
@@ -37,23 +36,12 @@ lipido::WebResponse handleIndex(lipido::WebContext &ctx) {
 
     response.body += "</ul>";
 
-    /*	for (std::map<std::string,std::string> row : posts) {
-    		for (auto k : row) {
-    			char buf[4096];
-
-    			sprintf(buf,"<p>%s => %s</p>\n", k.first.c_str(), k.second.c_str());
-    			response.body += buf;
-    		}
-    	}
-    */
-
     response.body += "<hr>Debug:<hr>";
 
     if (ctx.request.params.size()) {
         response.body += "GET params:<pre>\n";
 
 		for (auto param : ctx.request.params) {
-            //response.body += "key: ";
             response.body += param.first;
             response.body += " -> ";
             response.body += param.second;
