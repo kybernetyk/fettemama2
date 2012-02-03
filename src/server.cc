@@ -82,6 +82,32 @@ WebServer::WebServer() {
     m_getHandlers["*"] = defaultHandler;
 }
 
+
+std::map<std::string,std::string> WebServer::extractPOSTParams(evhttp_request *request) {
+    std::map<std::string, std::string> outParams;
+    auto buffer = evhttp_request_get_input_buffer(request);
+
+    char tmp[cfg::MAX_POST_LEN];
+    memset(tmp,0x00,cfg::MAX_POST_LEN);
+    if (evbuffer_copyout(buffer, tmp, cfg::MAX_POST_LEN) <= 0)
+		return outParams;
+
+	outParams = extractParams(tmp);
+    return outParams;
+}
+
+std::map<std::string,std::string> WebServer::extractGETParams(evhttp_request *request) {
+	std::map<std::string, std::string> outParams;
+
+    auto uri = evhttp_request_get_evhttp_uri(request);
+    auto query = evhttp_uri_get_query(uri);
+    if (!query)
+        return outParams;
+
+	outParams = extractParams(query);
+    return outParams;
+}
+
 void WebServer::handleEventCallback(evhttp_request *request) {
     printf(">>> handling callback!\n");
 
@@ -102,7 +128,7 @@ void WebServer::handleEventCallback(evhttp_request *request) {
         return;
     }
 
-		WebRequest w_req;
+    WebRequest w_req;
 
     //get handler for URI
     WebServerHandler handler = nullptr;
@@ -113,11 +139,11 @@ void WebServer::handleEventCallback(evhttp_request *request) {
         //which will read a file from static and send it
         if (!handler)
             handler = m_getHandlers["*"];
-    
-				w_req.params = extractGETParams(request);
+
+        w_req.params = extractGETParams(request);
     } else if (evhttp_request_get_command(request) == EVHTTP_REQ_POST) {
         handler = m_postHandlers[s_uri];
-				w_req.params = extractPOSTParams(request);
+        w_req.params = extractPOSTParams(request);
     }
 
     if (!handler) {
@@ -128,7 +154,7 @@ void WebServer::handleEventCallback(evhttp_request *request) {
 
     w_req.URI = s_uri;
 
-	//printf("params q: %s\n", w_req.params["q"].c_str());
+    //printf("params q: %s\n", w_req.params["q"].c_str());
     WebSession w_session;
     WebContext w_ctx(*this, w_req, w_session);
 
@@ -186,41 +212,28 @@ void WebServer::addPostHandler(std::string URI, WebServerHandler handler) {
     m_postHandlers[URI] = handler;
 }
 
-std::map<std::string,std::string> WebServer::extractPOSTParams(evhttp_request *request) {
-	std::map<std::string, std::string> outParams;
-
-	
-
-	return outParams;
-}
-
-std::map<std::string,std::string> WebServer::extractGETParams(evhttp_request *request) {
-	std::map<std::string, std::string> outParams;
-
-	auto uri = evhttp_request_get_evhttp_uri(request);
-	auto query = evhttp_uri_get_query(uri);
-	if (!query)
-		return outParams;
+std::map<std::string,std::string> WebServer::extractParams(const char *query) {
+    std::map<std::string, std::string> outParams;
 
 	evkeyvalq headers;
-	int iret = evhttp_parse_query_str(query, &headers);
-	if (iret != 0) {
-		return outParams;
-	}
+    int iret = evhttp_parse_query_str(query, &headers);
+    if (iret != 0) {
+        return outParams;
+    }
 
-	evkeyval *header;
-	for (header = headers.tqh_first;
-	header;
-	header = header->next.tqe_next) {
-		std::string key = header->key;
-		std::string value = header->value;
+    evkeyval *header;
+    for (header = headers.tqh_first;
+            header;
+            header = header->next.tqe_next) {
+        std::string key = header->key;
+        std::string value = header->value;
 
-		outParams[key] = value;
-		printf(".");
-	}
+        outParams[key] = value;
+        printf(".");
+    }
 
-	printf("ok!\n");
-	return outParams;
+    printf("ok!\n");
+    return outParams;
 }
 
 void WebServer::run(unsigned short port) {
@@ -234,14 +247,14 @@ void WebServer::run(unsigned short port) {
     //shamelessly stolen from the libevent http sample
     event_base *base;
     evhttp *http;
-    evhttp_bound_socket *handle;
+  //  evhttp_bound_socket *handle;
 
     base = event_base_new();
     http = evhttp_new(base);
 
     evhttp_set_gencb(http, ev_http_callback, this);
 
-    handle = evhttp_bind_socket_with_handle(http, "0.0.0.0", port);
+    evhttp_bind_socket_with_handle(http, "0.0.0.0", port);
 
     event_base_dispatch(base);
 }

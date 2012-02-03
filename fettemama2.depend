@@ -1,11 +1,12 @@
 # depslib dependency file v1.0
-1327764126 source:/home/xr0/fettemama2/src/main.cc
+1328292346 source:/home/xr0/fettemama2/src/main.cc
 	<stdio.h>
 	<memory>
 	"lipido.h"
 	"blog_index.h"
 
-1327682546 /home/xr0/fettemama2/src/lipido.h
+1328295900 /home/xr0/fettemama2/src/lipido.h
+	"config.h"
 	"response.h"
 	"request.h"
 	"context.h"
@@ -24,7 +25,7 @@
 	<memory>
 	"lipido.h"
 
-1328290924 /home/xr0/fettemama2/src/server.h
+1328295558 /home/xr0/fettemama2/src/server.h
 	<memory>
 	<map>
 	<string>
@@ -34,7 +35,7 @@
 1327681043 source:/home/xr0/fettemama2/src/response.cc
 	"lipido.h"
 
-1328291013 source:/home/xr0/fettemama2/src/server.cc
+1328296091 source:/home/xr0/fettemama2/src/server.cc
 	<memory>
 	"server.h"
 	<strings.h>
@@ -69,7 +70,7 @@
 1327759508 /home/xr0/fettemama2/src/blog_index.h
 	"lipido.h"
 
-1328291299 source:/home/xr0/fettemama2/src/blog_index.cc
+1328291369 source:/home/xr0/fettemama2/src/blog_index.cc
 	"blog_index.h"
 	"database.h"
 
@@ -83,4 +84,6 @@
 	<string>
 	<my_global.h>
 	<mysql.h>
+
+1328295993 /home/xr0/fettemama2/src/config.h
 
