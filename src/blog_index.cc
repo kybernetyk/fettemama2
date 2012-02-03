@@ -22,7 +22,7 @@ lipido::WebResponse handleIndex(lipido::WebContext &ctx) {
 
 	std::string day = "";
 
-for (auto post : posts) {
+	for (auto post : posts) {
 		std::string postdate = post["timestamp"];
 
 		if (day != postdate) {
@@ -45,7 +45,7 @@ for (auto post : posts) {
 	if (ctx.request.params.size()) {
 		response.body += "GET params:<pre>\n";
 
-for (auto param : ctx.request.params) {
+	for (auto param : ctx.request.params) {
 			response.body += param.first;
 			response.body += " -> ";
 			response.body += param.second;
