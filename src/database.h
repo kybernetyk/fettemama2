@@ -16,6 +16,8 @@ public:
 	std::vector<std::map<std::string, std::string>> query(std::string qry);
 	std::string version();
 
+	std::string escape(std::string str);
+
 protected:
 	MYSQL *m_dbConnection;
 };

@@ -10,10 +10,18 @@ lipido::WebResponse handleIndex(lipido::WebContext &ctx) {
     response.body += "<h1>Welcome To The Thunderdome</h1>";
     response.body += "<ul>";
 
-    auto posts = db.query("select content, DATE_FORMAT(timestamp,'%a %b %e %Y') as timestamp from posts order by id desc limit 20;");
+	std::vector<std::map<std::string, std::string>> posts;
+	try {
+		posts = db.query("select content, DATE_FORMAT(timestamp,'%a %b %e %Y') as timestamp from posts order by id desc limit 20;");
+	} catch (std::string &ex) {
+		printf("sql error: %s\n", ex.c_str());
+		response.body = ex;
+		response.httpCode = 501;
+		return response;
+	}
 
     std::string day = "";
-for (auto post : posts) {
+	for (auto post : posts) {
         std::string postdate = post["timestamp"];
         if (day != postdate) {
             day = postdate;
