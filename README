@@ -6,6 +6,10 @@ A retarded blogging engine written in C++0x ... because I'm too lazy to do real 
 	- libevent
 	- mysql libs
 
+* TODO:
+	- add a templating system (preferably mustache style)
+	- add session shits (cookies)
+
 * license:
 	- gpl v3
 		(c) leon szpilewski in 2012, leon.szpilewski@gmail.com
