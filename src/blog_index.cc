@@ -1,17 +1,33 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+
 #include "blog_index.h"
 #include "database.h"
-
 
 lipido::WebResponse handleIndex(lipido::WebContext &ctx) {
 	lipido::WebResponse response;
 	MySQLDatabase db;
 
-	response.body = "<html><head><title>fefemama</title></head><body>";
-	response.body += "<h1>Welcome To The Thunderdome</h1>";
-	response.body += "<ul>";
+	//TODO: move this html generation to a template system ... !!!
+	std::stringstream body;
+
+	body << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//ENi\">";
+	body << "<html>";
+	body << "<head>";
+	body << "<title>fefemama.org - THE BEST BLOG IN THE UNIVERSE WRITTEN IN C++ :]</title>";
+	body << "<body>";
+
+	body << "<h1><a href=/>Fefemama</a></h1>";
+	body << "<b>I love the smell of nopslides in the morning ...</b><br>";
+	
+	body << "<p align=right>Fragen? <a href=/faq.html>Antworten!</a><br>";
+	body << "<i>Einsendungen und Beschwerden bitte an blog@fettemama.org</i></p>";
+	body << "<p align=right>IRC: irc.hackint.eu | #fm</p>";
+
+	body << "<ul>";
 
 	std::vector<std::map<std::string, std::string>> posts;
-
 	try {
 		posts = db.query("select content, DATE_FORMAT(timestamp,'%a %b %e %Y') as timestamp from posts order by id desc limit 20;");
 	} catch (std::string &ex) {
@@ -27,35 +43,31 @@ lipido::WebResponse handleIndex(lipido::WebContext &ctx) {
 
 		if (day != postdate) {
 			day = postdate;
-			response.body += "</ul>";
-			response.body += "<h2>";
-			response.body += postdate;
-			response.body += "</h2><ul>";
+			body << "</ul>";
+			body << "<h2>";
+			body << postdate;
+			body << "</h2><ul>";
 		}
 
-		response.body += "<li><p>";
-		response.body += post["content"];
-		response.body += "</p></li>";
+		body << "<li><p>" << post["content"] << "</p></li>";
 	}
 
-	response.body += "</ul>";
+	body << "</ul>";
 
-	response.body += "<hr>Debug:<hr>";
+	body << "<hr>Debug:<hr>";
 
 	if (ctx.request.params.size()) {
-		response.body += "GET params:<pre>\n";
+		body << "GET params:<pre>\n";
 
 		for (auto param : ctx.request.params) {
-			response.body += param.first;
-			response.body += " -> ";
-			response.body += param.second;
-			response.body += "\n";
+			body << param.first << " -> " << param.second << "\n";
 		}
 
-		response.body += "</pre>";
+		body << "</pre>";
 	}
 
-	response.body += "</body></html>";
+	body << "</body></html>";
+	response.body = body.str();
 	return response;
 }
 
