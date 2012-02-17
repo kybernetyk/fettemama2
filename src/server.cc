@@ -3,6 +3,7 @@
 
 #include <strings.h>
 #include <unistd.h>
+#include <pwd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/stat.h>
@@ -289,6 +290,10 @@ not_found:
 				printf("I can become root. That's not OK! Killing myself ...\n");
 				exit(42);
 			}
+		}
+		auto pw = getpwuid(getuid());
+		if (pw) {
+			printf("running as user '%s' ...\n", pw->pw_name);
 		}
 
 		printf("starting dispatch loop ...\n");
