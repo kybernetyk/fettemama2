@@ -7,7 +7,7 @@ lipido::WebResponse handleNewPost(lipido::WebContext &ctx) {
 	MySQLDatabase db;
 
 	response.body = "<html><head><title>fefemama</title></head><body>";
-	response.body += "<h1>Welcome To The Thunderdome</h1>";
+	response.body += "<h1><a href=/>Thanks ur for ur cooperation lol</a></h1>";
 	response.body += "<ul>";
 
 	for (auto param : ctx.request.params) {
@@ -18,7 +18,7 @@ lipido::WebResponse handleNewPost(lipido::WebContext &ctx) {
 	}
 
 	if (ctx.request.params["password"] != admin_password) {
-		response.body = "LOL UR SUCK!<br>";
+		response.body = "<a href=/>LOL UR SUCK!</a><br>";
 		return response;
 	}
 

@@ -35,7 +35,7 @@ static lipido::WebResponse render_frontpage(lipido::WebContext &ctx) {
 
 	std::vector<std::map<std::string, std::string>> posts;
 	try {
-		posts = db.query("select content, DATE_FORMAT(timestamp,'%a %b %e %Y') as timestamp from posts order by id desc limit 20;");
+		posts = db.query("select id, content, DATE_FORMAT(timestamp,'%a %b %e %Y') as timestamp from posts order by id desc limit 20;");
 	} catch (std::string &ex) {
 		response.body = ex;
 		response.httpCode = 501;
@@ -52,7 +52,8 @@ static lipido::WebResponse render_frontpage(lipido::WebContext &ctx) {
 			body << postdate;
 			body << "</h2><ul>";
 		}
-		body << "<li><p>" << post["content"] << "</p></li>";
+		//streams SIND SO FERDAMMT KUHL WEIL SIE LESBAR SIND UNSO ...
+		body << "<li><a href=/?pid=" << post["id"] << ">[l]</a> " << post["content"] << "</li>";
 	}
 	
 	body << "</ul>";
