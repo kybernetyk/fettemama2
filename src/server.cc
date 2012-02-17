@@ -248,7 +248,8 @@ not_found:
 
 
 		if (chdir(cfg::rootdir) != 0) {
-			printf("couldn't change rootdir: %s\n", strerror(errno));	
+			printf("couldn't change rootdir to %s: %s\n", cfg::rootdir, strerror(errno));	
+			exit(5);
 		};
 
 		char buf[512];
@@ -266,7 +267,7 @@ not_found:
 		evhttp_set_gencb(http, ev_http_callback, this);
 
 		if (evhttp_bind_socket_with_handle(http, "0.0.0.0", port) == 0) {
-			printf("could not bind to port %i. bailing out.\n", port);
+			printf("could not bind to port %i: %s. bailing out.\n", port, strerror(errno));
 			return;
 		}
 
@@ -282,7 +283,14 @@ not_found:
         printf("setuid: Unable to drop user privileges: %s\n", strerror(errno));
 				exit(23);
 			}
+			
+			//if we can gain root after dropping privs something is wrong
+			if (setuid(0) != -1) {
+				printf("I can become root. That's not OK! Killing myself ...\n");
+				exit(42);
+			}
 		}
+
 		printf("starting dispatch loop ...\n");
 		event_base_dispatch(base);
 	}
