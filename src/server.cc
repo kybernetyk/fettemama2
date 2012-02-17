@@ -246,6 +246,11 @@ not_found:
 	void WebServer::run(unsigned short port) {
 		printf("server %p listening on port %i ...\n", this, port);
 
+
+		if (chdir(cfg::rootdir) != 0) {
+			printf("couldn't change rootdir: %s\n", strerror(errno));	
+		};
+
 		char buf[512];
 		getcwd(buf, sizeof(buf));
 

@@ -5,6 +5,8 @@ namespace lipido {
 		const int run_as_uid = 1001;
 		const int run_as_gid = 1001;
 		const bool drop_uid = true;
+
+		const char rootdir[] = "/Users/jrk/fettemama2";
 	}
 }
 
