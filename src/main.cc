@@ -49,6 +49,6 @@ int main(int argc, char **argv) {
 		server.addPostHandler("/post", post_handler);
 	*/
 
-	server.run(8080);
+	server.run(80);
 }
 

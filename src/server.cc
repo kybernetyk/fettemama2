@@ -260,8 +260,25 @@ not_found:
 
 		evhttp_set_gencb(http, ev_http_callback, this);
 
-		evhttp_bind_socket_with_handle(http, "0.0.0.0", port);
+		if (evhttp_bind_socket_with_handle(http, "0.0.0.0", port) == 0) {
+			printf("could not bind to port %i. bailing out.\n", port);
+			return;
+		}
 
+		if (cfg::drop_uid && getuid() == 0) {
+			printf("dropping privileges to %i:%i ...\n", cfg::run_as_uid, cfg::run_as_gid);
+			
+			if (setgid(cfg::run_as_gid) != 0) {
+        printf("setgid: Unable to drop group privileges: %s\n", strerror(errno));
+				exit(23);
+			}
+    
+			if (setuid(cfg::run_as_uid) != 0) {
+        printf("setuid: Unable to drop user privileges: %s\n", strerror(errno));
+				exit(23);
+			}
+		}
+		printf("starting dispatch loop ...\n");
 		event_base_dispatch(base);
 	}
 }
