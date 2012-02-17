@@ -85,12 +85,11 @@ static lipido::WebResponse render_post(lipido::WebContext &ctx) {
 
 	auto post = posts[0];
 
-	body << "</ul>";
 	body << "<h2>";
 	body << post["timestamp"];
 	body << "</h2><ul>";
 	
-	body << "<li><a href=/?pid=" << post["id"] << ">[l]</a> " << post["content"] << "</li>";
+	body << "<li><a href=/?pid=" << post["id"] << ">[l]</a> " << post["content"] << "</li></ul>";
 
 
 	render_ass(body);
