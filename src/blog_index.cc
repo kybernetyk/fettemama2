@@ -13,11 +13,11 @@ static void render_head(std::stringstream &body) {
 	body << "<body>";
 
 	body << "<h1><a href=/>Fefemama</a></h1>";
-	body << "<b>I love the smell of nopslides in the morning ...</b><br>";
+	body << "<b>I love the smell of nopslides in the morning ...</b>";
 	
 	body << "<p align=right>Fragen? <a href=/faq.html>Antworten!</a><br>";
-	body << "<i>Einsendungen und Beschwerden bitte an blog@fettemama.org</i></p>";
-	body << "<p align=right>IRC: irc.hackint.eu | #fm</p>";
+	body << "<i>Einsendungen und Beschwerden bitte an blog@fettemama.org</i><br>";
+	body << "IRC: irc.hackint.eu | #fm</p>";
 }
 
 static void render_ass(std::stringstream &body) {
@@ -31,7 +31,6 @@ static lipido::WebResponse render_frontpage(lipido::WebContext &ctx) {
 
 	std::stringstream body;
 	render_head(body);
-	body << "<ul>";
 
 	std::vector<std::map<std::string, std::string>> posts;
 	try {
@@ -62,6 +61,43 @@ static lipido::WebResponse render_frontpage(lipido::WebContext &ctx) {
 	return response;
 }
 
+static lipido::WebResponse render_post(lipido::WebContext &ctx) {
+	MySQLDatabase db;
+	lipido::WebResponse response;
+	std::stringstream body;
+
+	render_head(body);
+
+	std::vector<std::map<std::string, std::string>> posts;
+	try {
+		std::stringstream qry;
+		qry << "select id, content, DATE_FORMAT(timestamp,'%a %b %e %Y') as timestamp from posts where id = ";
+		qry << ctx.request.params["pid"];
+		qry << " order by id desc limit 1;";
+
+		printf("query: %s\n", qry.str().c_str());
+		posts = db.query(qry.str());
+	} catch (std::string &ex) {
+		response.body = ex;
+		response.httpCode = 501;
+		return response;
+	}
+
+	auto post = posts[0];
+
+	body << "</ul>";
+	body << "<h2>";
+	body << post["timestamp"];
+	body << "</h2><ul>";
+	
+	body << "<li><a href=/?pid=" << post["id"] << ">[l]</a> " << post["content"] << "</li>";
+
+
+	render_ass(body);
+	response.body = body.str();
+	return response;
+}
+
 static lipido::WebResponse render_niy(lipido::WebContext &ctx) {
 	lipido::WebResponse response;
 	std::stringstream body;
@@ -85,6 +121,9 @@ static lipido::WebResponse render_niy(lipido::WebContext &ctx) {
 
 lipido::WebResponse handleIndex(lipido::WebContext &ctx) {
 	if (ctx.request.params.size() > 0) {
+		if (ctx.request.params["pid"].length() > 0)
+			return render_post(ctx);
+
 		return render_niy(ctx);
 	}
 
