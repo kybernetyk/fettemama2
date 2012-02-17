@@ -11,6 +11,7 @@ test: clean all run
 .PHONY: blog
 blog:
 	$(CC) $(CFLAGS) *.cc $(LIBS) -o $(EXECNAME)
+	install_name_tool -change libmysqlclient.18.dylib /usr/local/mysql-5.5.20-osx10.6-x86_64/lib/libmysqlclient.18.dylib blog 
 
 clean:
 	rm -rf *.o $(EXECNAME) core
