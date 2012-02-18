@@ -52,7 +52,7 @@ static lipido::WebResponse render_frontpage(lipido::WebContext &ctx) {
 			body << "</h2><ul>";
 		}
 		//streams SIND SO FERDAMMT KUHL WEIL SIE LESBAR SIND UNSO ...
-		body << "<li><a href=/?pid=" << post["id"] << ">[l]</a> " << post["content"] << "</li>";
+		body << "<li><a href=/?pid=" << post["id"] << ">[l]</a> " << post["content"] << "</li><br>";
 	}
 	
 	body << "</ul>";
