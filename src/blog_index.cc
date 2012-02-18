@@ -83,6 +83,13 @@ static lipido::WebResponse render_post(lipido::WebContext &ctx) {
 		return response;
 	}
 
+	if (posts.size() <= 0) {
+		body << "LOL THIS POSTS NOT FOUNDS DU TARD!";
+		render_ass(body);
+		response.body = body.str();
+		return response;
+	}
+
 	auto post = posts[0];
 
 	body << "<h2>";
