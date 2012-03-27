@@ -10,14 +10,18 @@ static void render_head(std::stringstream &body) {
 	body << "<html>";
 	body << "<head>";
 	body << "<title>fefemama.org - THE BEST BLOG IN THE UNIVERSE WRITTEN IN C++ :]</title>";
-	body << "<body>";
+//	body << "<body>";
+	body << "<body link=#ffffff vlink=#ffffff alink=#ffff00 bgcolor=#000000 text=#00dd00>";
+	body << "<font face='terminal, system, monospace'>";
+	body << "<table><td width=800>";
 
 	body << "<h1><a href=/>Fefemama</a></h1>";
 	body << "<b>I love the smell of nopslides in the morning ...</b>";
 	
 	body << "<p align=right>Fragen? <a href=/faq.html>Antworten!</a><br>";
 	body << "<i>Einsendungen und Beschwerden bitte an blog@fettemama.org</i><br>";
-	body << "IRC: irc.hackint.eu | #fm</p>";
+	body << "IRC: irc.hackint.eu | #fm<br>";
+	body << "Github: <a href=http://github.com/jsz/fettemama2>github.com/jsz/fettemama2</a></p>";
 }
 
 static void render_ass(std::stringstream &body) {
