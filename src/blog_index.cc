@@ -76,7 +76,7 @@ static lipido::WebResponse render_post(lipido::WebContext &ctx) {
 	try {
 		std::stringstream qry;
 		qry << "select id, content, DATE_FORMAT(timestamp,'%a %b %e %Y') as timestamp from posts where id = ";
-		qry << ctx.request.params["pid"];
+		qry << db.escape(ctx.request.params["pid"]);
 		qry << " order by id desc limit 1;";
 
 		printf("query: %s\n", qry.str().c_str());
