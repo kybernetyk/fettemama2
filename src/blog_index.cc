@@ -25,6 +25,7 @@ static void render_head(std::stringstream &body) {
 }
 
 static void render_ass(std::stringstream &body) {
+	body << "<center><a href=/?mode=all>Alle Posts</a></center>";
 	body << "<div align=right>Proudly made without PHP, Java, Perl, and Postgres<br><a href=/impressum.html>Impressum</a></div>";
 	body << "</body></html>";
 }
