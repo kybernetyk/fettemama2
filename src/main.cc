@@ -43,6 +43,8 @@ int main(int argc, char **argv) {
 	server.addGetHandler("/wp-rss2.php", handleRSS);
 	server.addGetHandler("/index.php/feed/", handleRSS);
 	server.addGetHandler("/index.php/feed/atom/", handleRSS);
+	server.addGetHandler("/feed/rss2/", handleRSS);
+	server.addGetHandler("/feed/", handleRSS);
 	/*
 	    server.addGetHandler("/fefe", [](lipido::WebContext &context) -> lipido::WebResponse {
 	        printf("fefe ist fett\n");
