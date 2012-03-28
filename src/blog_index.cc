@@ -25,7 +25,8 @@ static void render_ass(std::stringstream &body) {
 	body << "</body></html>";
 }
 
-static lipido::WebResponse render_frontpage(lipido::WebContext &ctx) {
+/** render the frontpage. optionally limit the post count. default is 20. if limit == 0 all posts in db will be rendered */
+static lipido::WebResponse render_frontpage(lipido::WebContext &ctx, int limit = 20) {
 	lipido::WebResponse response;
 	MySQLDatabase db;
 
@@ -34,7 +35,15 @@ static lipido::WebResponse render_frontpage(lipido::WebContext &ctx) {
 
 	std::vector<std::map<std::string, std::string>> posts;
 	try {
-		posts = db.query("select id, content, DATE_FORMAT(timestamp,'%a %b %e %Y') as timestamp from posts order by id desc limit 20;");
+		std::stringstream qry;
+		qry << "select id, content, DATE_FORMAT(timestamp,'%a %b %e %Y') as timestamp from posts order by id desc";
+		if (limit > 0) {
+			qry << " limit ";
+			qry << limit;
+		}
+		qry << ";";
+
+		posts = db.query(qry.str())
 	} catch (std::string &ex) {
 		response.body = ex;
 		response.httpCode = 501;
@@ -51,7 +60,6 @@ static lipido::WebResponse render_frontpage(lipido::WebContext &ctx) {
 			body << postdate;
 			body << "</h2><ul>";
 		}
-		//streams SIND SO FERDAMMT KUHL WEIL SIE LESBAR SIND UNSO ...
 		body << "<li><a href=/?pid=" << post["id"] << ">[l]</a> " << post["content"] << "</li><br>";
 	}
 	
@@ -104,6 +112,17 @@ static lipido::WebResponse render_post(lipido::WebContext &ctx) {
 	return response;
 }
 
+static lipido::WebResponse render_month(lipido::WebContext &ctx) {
+	lipido::WebResponse response;
+	std::stringstream body;
+	render_head(body);
+
+	response.body += "<pre>underconstruction.gif</pre>";
+
+	render_ass(body);
+	return response;
+}
+
 static lipido::WebResponse render_niy(lipido::WebContext &ctx) {
 	lipido::WebResponse response;
 	std::stringstream body;
@@ -129,6 +148,11 @@ lipido::WebResponse handleIndex(lipido::WebContext &ctx) {
 	if (ctx.request.params.size() > 0) {
 		if (ctx.request.params["pid"].length() > 0)
 			return render_post(ctx);
+		if (ctx.request.params["mon"].length() > 0)
+			return render_month(ctx);
+		if (ctx.request.params["mode"] == "all") {
+			return render_frontpage(ctx, 0);
+		}
 
 		return render_niy(ctx);
 	}
