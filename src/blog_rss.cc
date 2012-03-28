@@ -7,7 +7,7 @@
 
 static void render_head(std::stringstream &body) {
 	body << "<?xml version='1.0' encoding='UTF-8'?>";
-	body << "<rss version='2.0'";
+	body << "<rss version='2.0'>";
 	body << "<channel>";
 	body << "<title>fefemama</title>";
 	body << "<link>http://fettemama.org</link>";
@@ -79,6 +79,7 @@ static lipido::WebResponse render_rss(lipido::WebContext &ctx, int limit = 0) {
 	body << "</ul>";
 	render_ass(body);
 	response.body = body.str();
+	response.contentType = "application/rss+xml";
 	return response;
 }
 
