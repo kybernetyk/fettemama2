@@ -56,7 +56,7 @@ static lipido::WebResponse render_rss(lipido::WebContext &ctx, int limit = 0) {
 			body << "<title><![CDATA[";
 			size_t title_len = 64;
 			std::string title = html_strip(post["content"]);
-			if (title < title_len)
+			if (title.length() < title_len)
 				title_len = title.length(); 
 			title = title.substr(0, title_len);	
 			body << title;
