@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
 
 	server.addGetHandler("/", handleIndex);
 	server.addPostHandler("/new_post();", handleNewPost);
-	server.addPostHandler("/rss.xml", handleRSS);
+	server.addGetHandler("/rss.xml", handleRSS);
 
 	/*
 	    server.addGetHandler("/fefe", [](lipido::WebContext &context) -> lipido::WebResponse {
