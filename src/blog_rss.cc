@@ -3,6 +3,7 @@
 #include <sstream>
 
 #include "database.h"
+#include "html_strip.h"
 #include "blog_rss.h"
 
 static void render_head(std::stringstream &body) {
@@ -54,9 +55,10 @@ static lipido::WebResponse render_rss(lipido::WebContext &ctx, int limit = 0) {
 			
 			body << "<title><![CDATA[";
 			size_t title_len = 64;
-			if (post["content"].length() < title_len)
-				title_len = post["content"].length();
-			std::string title = post["content"].substr(0, title_len);	
+			std::string title = html_strip(post["content"]);
+			if (title < title_len)
+				title_len = title.length(); 
+			title = title.substr(0, title_len);	
 			body << title;
 			body << "]]></title>";
 			
