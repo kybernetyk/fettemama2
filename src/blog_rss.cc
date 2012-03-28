@@ -52,13 +52,13 @@ static lipido::WebResponse render_rss(lipido::WebContext &ctx, int limit = 0) {
 			body << "]]>";
 			body << "</description>";
 			
-			body << "<title>";
+			body << "<title>M![CDATA[";
 			size_t title_len = 64;
 			if (post["content"].length() < title_len)
 				title_len = post["content"].length();
 			std::string title = post["content"].substr(0, title_len);	
 			body << title;
-			body << "</title>";
+			body << "]]></title>";
 			
 			body << "<link>";
 			body << "http://fettemama.org/?pid=";
