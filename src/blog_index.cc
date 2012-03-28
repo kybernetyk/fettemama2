@@ -47,7 +47,7 @@ static lipido::WebResponse render_frontpage(lipido::WebContext &ctx, int limit =
 		}
 		qry << ";";
 
-		posts = db.query(qry.str())
+		posts = db.query(qry.str());
 	} catch (std::string &ex) {
 		response.body = ex;
 		response.httpCode = 501;
