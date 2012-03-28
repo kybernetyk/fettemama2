@@ -72,7 +72,7 @@ static lipido::WebResponse render_rss(lipido::WebContext &ctx, int limit = 0) {
 			
 			body << "<pubDate>";
 			body << post["timestamp"];	
-			body << " +0100</pubDate>";
+			body << " +0200</pubDate>";
 			body << "</item>";
 	}
 	
