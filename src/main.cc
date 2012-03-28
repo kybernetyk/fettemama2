@@ -3,6 +3,7 @@
 #include "lipido.h"
 #include "blog_index.h"
 #include "blog_admin.h"
+#include "blog_rss.h"
 
 lipido::WebResponse test_handler(lipido::WebContext &context) {
 	lipido::WebResponse resp;
@@ -38,6 +39,7 @@ int main(int argc, char **argv) {
 
 	server.addGetHandler("/", handleIndex);
 	server.addPostHandler("/new_post();", handleNewPost);
+	server.addPostHandler("/rss.xml", handleRSS);
 
 	/*
 	    server.addGetHandler("/fefe", [](lipido::WebContext &context) -> lipido::WebResponse {

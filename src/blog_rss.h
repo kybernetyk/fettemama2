@@ -6,5 +6,5 @@
 #pragma once
 #include "lipido.h"
 
-lipido::WebResponse handleIndex(lipido::WebContext &ctx);
+lipido::WebResponse handleRSS(lipido::WebContext &ctx);
 
