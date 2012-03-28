@@ -9,6 +9,7 @@ static void render_head(std::stringstream &body) {
 	body << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//ENi\">";
 	body << "<html>";
 	body << "<head>";
+	body << "<link rel='alternate' type='application/rss+xml' title='RSS FEED DU AFFE' href='http://feeds.feedburner.com/FetteMama'>";
 	body << "<title>fefemama.org - THE BEST BLOG IN THE UNIVERSE WRITTEN IN C++ :]</title>";
 //	body << "<body>";
 	body << "<body link=#ffffff vlink=#ffffff alink=#ffff00 bgcolor=#000000 text=#00dd00>";
