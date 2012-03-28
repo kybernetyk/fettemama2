@@ -52,7 +52,7 @@ static lipido::WebResponse render_rss(lipido::WebContext &ctx, int limit = 0) {
 			body << "]]>";
 			body << "</description>";
 			
-			body << "<title>M![CDATA[";
+			body << "<title><![CDATA[";
 			size_t title_len = 64;
 			if (post["content"].length() < title_len)
 				title_len = post["content"].length();
@@ -72,11 +72,10 @@ static lipido::WebResponse render_rss(lipido::WebContext &ctx, int limit = 0) {
 			
 			body << "<pubDate>";
 			body << post["timestamp"];	
-			body << "</pubDate>";
+			body << " +0100</pubDate>";
 			body << "</item>";
 	}
 	
-	body << "</ul>";
 	render_ass(body);
 	response.body = body.str();
 	response.contentType = "application/rss+xml";
