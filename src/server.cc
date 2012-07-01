@@ -267,10 +267,15 @@ not_found:
 
 		evhttp_set_gencb(http, ev_http_callback, this);
 
-		if (evhttp_bind_socket_with_handle(http, "0.0.0.0", port) == 0) {
-			printf("could not bind to port %i: %s. bailing out.\n", port, strerror(errno));
+		if (evhttp_bind_socket_with_handle(http, "fc0a:ef4c:adff:e2f9:639f:7f79:cc16:99db", port) == 0) {
+			printf("could not bind to port6 %i: %s. bailing out.\n", port, strerror(errno));
 			return;
 		}
+		if (evhttp_bind_socket_with_handle(http, "0.0.0.0", port) == 0) {
+			printf("could not bind to port4 %i: %s. bailing out.\n", port, strerror(errno));
+			return;
+		}
+
 
 		if (cfg::drop_uid && getuid() == 0) {
 			printf("dropping privileges to %i:%i ...\n", cfg::run_as_uid, cfg::run_as_gid);
