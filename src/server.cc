@@ -208,6 +208,12 @@ not_found:
 		printf(">>> sending response ... ");
 		evhttp_add_header(evhttp_request_get_output_headers(request),
 		                  "Content-Type", resp.contentType.c_str());
+		
+		if (resp.httpCode == 301 || resp.httpCode == 303) {
+			evhttp_add_header(evhttp_request_get_output_headers(request),
+		                  "location", resp.body.c_str());
+	
+		}
 		evhttp_send_reply(request, resp.httpCode, resp.httpReason.c_str(), replbuf);
 		printf("ok\n");
 		return;
