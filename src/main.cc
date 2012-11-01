@@ -46,7 +46,7 @@ int main(int argc, char **argv) {
 	server.addGetHandler("/feed/rss2/", handleRSS);
 	server.addGetHandler("/feed/", handleRSS);
 
-	std::pair<std::string,unsigned short> if1 = std::make_pair("0.0.0.0", 9876);
+	std::pair<std::string,unsigned short> if1 = std::make_pair("0.0.0.0", 80);
 	auto interfaces = std::vector<std::pair<std::string, unsigned short>>();
 	interfaces.push_back(if1);
 	server.run(interfaces);

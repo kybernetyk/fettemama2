@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <string.h>
 
 #include "blog_index.h"
 #include "database.h"
