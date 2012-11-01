@@ -85,10 +85,18 @@ static lipido::WebResponse render_post(lipido::WebContext &ctx) {
 	render_head(body);
 
 	std::vector<std::map<std::string, std::string>> posts;
+	auto post_id = ctx.request.params["pid"];
+	size_t pos = post_id.find("3000");
+	if (pos == 0) {
+		printf("post id contains hacky prefix at index %lu. purging '%s'\n", pos, post_id.c_str());
+		pos += strlen("3000");
+		post_id = post_id.substr(pos, std::string::npos);
+		printf("new post id is: '%s'\n", post_id.c_str());
+	}
 	try {
 		std::stringstream qry;
 		qry << "select id, content, DATE_FORMAT(timestamp,'%a %b %e %Y') as timestamp from posts where id = ";
-		qry << db.escape(ctx.request.params["pid"]);
+		qry << db.escape(post_id);
 		qry << " order by id desc limit 1;";
 
 		printf("query: %s\n", qry.str().c_str());
