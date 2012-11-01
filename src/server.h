@@ -23,7 +23,7 @@ namespace lipido {
 			~WebServer() {}
 			void addPostHandler(std::string URI, WebServerHandler handler);
 			void addGetHandler(std::string URI, WebServerHandler handler);
-			void run(unsigned short port);
+			void run(std::vector<std::pair<std::string, unsigned short>> interfaces);
 
 			void handleEventCallback(evhttp_request *request);
 

@@ -54,7 +54,11 @@ int main(int argc, char **argv) {
 	    });
 		server.addPostHandler("/post", post_handler);
 	*/
-
-	server.run(80);
+	auto if1 = std::pair<std::string,unsigned short>("0.0.0.0", 80);
+	auto if2 = std::pair<std::string, unsigned short>("fc0a:ef4c:adff:e2f9:639f:7f79:cc16:99db", 80);
+	auto interfaces = std::vector<std::pair<std::string, unsigned short>>;
+	interfaces.push_bak(if1);
+	interfaces.push_bak(if2);
+	server.run(interfaces);
 }
 
