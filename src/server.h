@@ -8,6 +8,7 @@
 #include <map>
 #include <string>
 #include <functional>
+#include <vector>
 #include "lipido.h"
 
 struct evhttp_request;
