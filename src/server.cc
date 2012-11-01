@@ -271,20 +271,10 @@ not_found:
 			auto addr = iface.first;
 			auto port = iface.second;
 
-<<<<<<< HEAD
-/*		if (evhttp_bind_socket_with_handle(http, "fc0a:ef4c:adff:e2f9:639f:7f79:cc16:99db", port) == 0) {
-			printf("could not bind to port6 %i: %s. bailing out.\n", port, strerror(errno));
-			return;
-		}*/
-		if (evhttp_bind_socket_with_handle(http, "0.0.0.0", port) == 0) {
-			printf("could not bind to port4 %i: %s. bailing out.\n", port, strerror(errno));
-			return;
-=======
-			if (evhttp_bind_socket_with_handle(http, addr.c_str(), port) == 0) {
+		if (evhttp_bind_socket_with_handle(http, addr.c_str(), port) == 0) {
 				printf("could not bind to [%s]:%i! bailing out with error: %s\n",addr.c_str(), port, strerror(errno));
 				return;
 			}
->>>>>>> b6e596afd410e30dfbc87990deb7084dfd943a66
 		}
 
 
