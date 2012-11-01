@@ -92,6 +92,11 @@ static lipido::WebResponse render_post(lipido::WebContext &ctx) {
 		pos += strlen("3000");
 		post_id = post_id.substr(pos, std::string::npos);
 		printf("new post id is: '%s'\n", post_id.c_str());
+		response.httpCode = 301;
+		response.httpReason = "Moved Permanently";
+		response.body = "/?pid=";
+		response.body += post_id;
+		return response;
 	}
 	try {
 		std::stringstream qry;
