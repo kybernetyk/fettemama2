@@ -20,7 +20,8 @@ static void render_head(std::stringstream &body) {
 	body << "<table><td width=800>";
 
 	body << "<h1><a href=/>Fefemama</a></h1>";
-	body << "<b>I love the smell of nopslides in the morning ...</b>";
+	//body << "<b>I love the smell of nopslides in the morning ...</b>";
+	body << "<b>We are Samurai... the Keyboard Cowboys... and all those other people who have no idea what's going on are the cattle...</b>";
 	
 	body << "<p align=right>Fragen? <a href=/faq.html>Antworten!</a><br>";
 	body << "<i>Einsendungen und Beschwerden bitte an blog@fettemama.org</i><br>";
