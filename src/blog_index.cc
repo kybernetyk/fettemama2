@@ -26,7 +26,7 @@ static void render_head(std::stringstream &body) {
 	body << "<p align=right>Fragen? <a href=/faq.html>Antworten!</a><br>";
 	body << "<i>Einsendungen und Beschwerden bitte an blog@fettemama.org</i><br>";
 	body << "IRC: irc.hackint.eu | #fm<br>";
-	body << "Github: <a href=http://github.com/jsz/fettemama2>github.com/jsz/fettemama2</a></p>";
+	body << "Github: <a href=http://github.com/kybernetyk/fettemama2>github.com/kybernetyk/fettemama2</a></p>";
 }
 
 static void render_ass(std::stringstream &body) {
