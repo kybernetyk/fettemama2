@@ -6,6 +6,10 @@ A retarded blogging engine written in C++0x ... because I'm too lazy to do real 
 	- libevent
 	- mysql libs
 
+there's an xcode project in the fettemama2 subfolder for easier development (clang autocomplete yeah!). there could be some problems with the run scheme as IT MAY HAVE a hardcoded binary path to execute.
+
+also check config.h for settings!
+
 * TODO:
 	- add a templating system (preferably mustache style)
 	- add session shits (cookies)
