@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
 	auto interfaces = std::vector<std::pair<std::string, unsigned short>> { 
 		std::make_pair("0.0.0.0", lipido::cfg::listen_port),
 	};
-	
+	   
 	server.run(interfaces);
 }
 
