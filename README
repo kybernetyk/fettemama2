@@ -6,7 +6,14 @@ A retarded blogging engine written in C++0x ... because I'm too lazy to do real 
 	- libevent
 	- mysql libs
 
-there's an xcode project in the fettemama2 subfolder for easier development (clang autocomplete yeah!). there could be some problems with the run scheme as IT MAY HAVE a hardcoded binary path to execute.
+* General notes:
+
+There's an xcode project in the fettemama2 subfolder for easier development (clang autocomplete yeah!). 
+There could be some problems with the run scheme as IT MAY HAVE a hardcoded binary path to execute.
+To get it to compile you need to create a file called "admin_password" in the source directory with the following contents:
+    std::string admin_password = "YOURSECRETPASSWORD";
+
+This file is .gitignore'd for national security reasons.
 
 also check config.h for settings!
 

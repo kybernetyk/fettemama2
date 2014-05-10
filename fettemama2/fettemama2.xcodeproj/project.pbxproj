@@ -54,6 +54,7 @@
 		0DB3EFE5191E4B7800CD43AC /* server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = server.h; sourceTree = "<group>"; };
 		0DB3EFE6191E4B7800CD43AC /* session.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = session.cc; sourceTree = "<group>"; };
 		0DB3EFE7191E4B7800CD43AC /* session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = session.h; sourceTree = "<group>"; };
+		0DB3EFF8191E4E6E00CD43AC /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = ../README; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +71,7 @@
 		0DB3EFB5191E4B5E00CD43AC = {
 			isa = PBXGroup;
 			children = (
+				0DB3EFF8191E4E6E00CD43AC /* README */,
 				0DB3EFCA191E4B7800CD43AC /* src */,
 				0DB3EFBF191E4B5E00CD43AC /* Products */,
 			);
@@ -318,6 +320,7 @@
 				0DB3EFC9191E4B5E00CD43AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
