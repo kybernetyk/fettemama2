@@ -8,8 +8,12 @@ namespace lipido {
 
 		const int listen_port = 8001;
 
-		//const char rootdir[] = "/home/blog/fettemama2";
+#ifdef DEBUG
 		const char rootdir[] = "/Users/kyb/code/fettemama2";
+#else
+        const char rootdir[] = "/home/blog/fettemama2";
+#endif
+
 	}
 }
 
