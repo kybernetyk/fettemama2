@@ -1,6 +1,6 @@
 fettemama 2
 -----------
-A retarded blogging engine written in C++0x ... because I'm too lazy to do real work.
+A blogging engine written in C++0x ... because I'm too lazy to do real work.
 
 * dependencies:
 	- libevent
