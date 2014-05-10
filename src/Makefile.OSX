@@ -2,6 +2,10 @@
 # install the mysql connector with:
 # 	brew install mysql-connector-c
 # needs clang (installed with xcode)
+
+#needed for mysql_config
+export PATH := /usr/local/bin:$(PATH)
+
 CC=clang++
 LIBS=-lcurl -pthread -levent `mysql_config --libs` -lpthread -lz -lm -lssl -lcrypto -ldl 
 CFLAGS=-std=c++11 -stdlib=libc++ `mysql_config --include` -fPIC -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -fno-strict-aliasing -DBIG_JOINS=1 -fomit-frame-pointer  -g

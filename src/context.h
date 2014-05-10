@@ -11,7 +11,9 @@ namespace lipido {
 		WebRequest &request;
 		WebSession &session;
 
-		WebContext(WebServer &srv, WebRequest &req, WebSession &sess) : server(srv), request(req), session(sess) {}
+		WebContext(WebServer &srv, WebRequest &req, WebSession &sess) : server(srv), request(req), session(sess) {
+        
+        }
 	};
 
 }

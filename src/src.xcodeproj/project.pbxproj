@@ -1,0 +1,190 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		0D3A0C4F191E479700291090 /* .DS_Store */ = {isa = PBXFileReference; lastKnownFileType = file; path = .DS_Store; sourceTree = "<group>"; };
+		0D3A0C50191E479700291090 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		0D3A0C51191E479700291090 /* admin_password */ = {isa = PBXFileReference; lastKnownFileType = text; path = admin_password; sourceTree = "<group>"; };
+		0D3A0C52191E479700291090 /* blog_admin.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = blog_admin.cc; sourceTree = "<group>"; };
+		0D3A0C53191E479700291090 /* blog_admin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = blog_admin.h; sourceTree = "<group>"; };
+		0D3A0C54191E479700291090 /* blog_index.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = blog_index.cc; sourceTree = "<group>"; };
+		0D3A0C55191E479700291090 /* blog_index.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = blog_index.h; sourceTree = "<group>"; };
+		0D3A0C56191E479700291090 /* blog_rss.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = blog_rss.cc; sourceTree = "<group>"; };
+		0D3A0C57191E479700291090 /* blog_rss.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = blog_rss.h; sourceTree = "<group>"; };
+		0D3A0C58191E479700291090 /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		0D3A0C59191E479700291090 /* context.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
+		0D3A0C5A191E479700291090 /* database.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = database.cc; sourceTree = "<group>"; };
+		0D3A0C5B191E479700291090 /* database.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = database.h; sourceTree = "<group>"; };
+		0D3A0C5C191E479700291090 /* html_strip.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = html_strip.cc; sourceTree = "<group>"; };
+		0D3A0C5D191E479700291090 /* html_strip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = html_strip.h; sourceTree = "<group>"; };
+		0D3A0C5E191E479700291090 /* lipido.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lipido.h; sourceTree = "<group>"; };
+		0D3A0C5F191E479700291090 /* main.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cc; sourceTree = "<group>"; };
+		0D3A0C60191E479700291090 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		0D3A0C61191E479700291090 /* Makefile.OSX */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.OSX; sourceTree = "<group>"; };
+		0D3A0C62191E479700291090 /* Makefile.ubuntu */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.ubuntu; sourceTree = "<group>"; };
+		0D3A0C63191E479700291090 /* request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = request.h; sourceTree = "<group>"; };
+		0D3A0C64191E479700291090 /* response.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = response.cc; sourceTree = "<group>"; };
+		0D3A0C65191E479700291090 /* response.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = response.h; sourceTree = "<group>"; };
+		0D3A0C66191E479700291090 /* runloop.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = runloop.sh; sourceTree = "<group>"; };
+		0D3A0C67191E479700291090 /* server.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = server.cc; sourceTree = "<group>"; };
+		0D3A0C68191E479700291090 /* server.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = server.h; sourceTree = "<group>"; };
+		0D3A0C69191E479700291090 /* session.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = session.cc; sourceTree = "<group>"; };
+		0D3A0C6A191E479700291090 /* session.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = session.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0D3A0C49191E479700291090 = {
+			isa = PBXGroup;
+			children = (
+				0D3A0C4F191E479700291090 /* .DS_Store */,
+				0D3A0C50191E479700291090 /* .gitignore */,
+				0D3A0C51191E479700291090 /* admin_password */,
+				0D3A0C52191E479700291090 /* blog_admin.cc */,
+				0D3A0C53191E479700291090 /* blog_admin.h */,
+				0D3A0C54191E479700291090 /* blog_index.cc */,
+				0D3A0C55191E479700291090 /* blog_index.h */,
+				0D3A0C56191E479700291090 /* blog_rss.cc */,
+				0D3A0C57191E479700291090 /* blog_rss.h */,
+				0D3A0C58191E479700291090 /* config.h */,
+				0D3A0C59191E479700291090 /* context.h */,
+				0D3A0C5A191E479700291090 /* database.cc */,
+				0D3A0C5B191E479700291090 /* database.h */,
+				0D3A0C5C191E479700291090 /* html_strip.cc */,
+				0D3A0C5D191E479700291090 /* html_strip.h */,
+				0D3A0C5E191E479700291090 /* lipido.h */,
+				0D3A0C5F191E479700291090 /* main.cc */,
+				0D3A0C60191E479700291090 /* Makefile */,
+				0D3A0C61191E479700291090 /* Makefile.OSX */,
+				0D3A0C62191E479700291090 /* Makefile.ubuntu */,
+				0D3A0C63191E479700291090 /* request.h */,
+				0D3A0C64191E479700291090 /* response.cc */,
+				0D3A0C65191E479700291090 /* response.h */,
+				0D3A0C66191E479700291090 /* runloop.sh */,
+				0D3A0C67191E479700291090 /* server.cc */,
+				0D3A0C68191E479700291090 /* server.h */,
+				0D3A0C69191E479700291090 /* session.cc */,
+				0D3A0C6A191E479700291090 /* session.h */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		0D3A0C4E191E479700291090 /* src */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 0D3A0C6B191E479700291090 /* Build configuration list for PBXLegacyTarget "src" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = /Users/kyb/code/fettemama2/src;
+			dependencies = (
+			);
+			name = src;
+			passBuildSettingsInEnvironment = 1;
+			productName = src;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		0D3A0C4A191E479700291090 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+			};
+			buildConfigurationList = 0D3A0C4D191E479700291090 /* Build configuration list for PBXProject "src" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0D3A0C49191E479700291090;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0D3A0C4E191E479700291090 /* src */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		0D3A0C4B191E479700291090 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		0D3A0C4C191E479700291090 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+		0D3A0C6C191E479700291090 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = src;
+			};
+			name = Debug;
+		};
+		0D3A0C6D191E479700291090 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = src;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0D3A0C4D191E479700291090 /* Build configuration list for PBXProject "src" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D3A0C4B191E479700291090 /* Debug */,
+				0D3A0C4C191E479700291090 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0D3A0C6B191E479700291090 /* Build configuration list for PBXLegacyTarget "src" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D3A0C6C191E479700291090 /* Debug */,
+				0D3A0C6D191E479700291090 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0D3A0C4A191E479700291090 /* Project object */;
+}
