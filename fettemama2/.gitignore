@@ -20,6 +20,9 @@ doc
 
 .idea/
 
+
+fettemama2.xcodeproj/xcuserdata/
+
 ####
 # Xcode temporary files that should never be committed
 # 
