@@ -253,8 +253,9 @@ not_found:
 	}
 
 	void WebServer::run(std::vector<std::pair<std::string, unsigned short>> interfaces) {
-	//	printf("server %p listening on port %i ...\n", this, port);
-
+		for (auto iface : interfaces) {
+			printf("listening on IP: %s:%i...\n", iface.first.c_str(), iface.second);
+		}		
 
 		if (chdir(cfg::rootdir) != 0) {
 			printf("couldn't change rootdir to %s: %s\n", cfg::rootdir, strerror(errno));	

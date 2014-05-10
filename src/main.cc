@@ -7,14 +7,10 @@
 
 lipido::WebResponse test_handler(lipido::WebContext &context) {
 	lipido::WebResponse resp;
-	resp.body = "LOL ICH MACH DICH PLATT!";
-	return resp;
-}
-
-lipido::WebResponse post_handler(lipido::WebContext &context) {
-	lipido::WebResponse resp;
 	resp.body = "<pre>";
-	resp.body += "POST RESPONSE!\n";
+	resp.body += "RESPONSE for: ";
+	resp.body += context.request.URI;
+	resp.body += "\n";
 
 	for (auto param : context.request.params) {
 		resp.body += param.first;
@@ -34,8 +30,10 @@ int main(int argc, char **argv) {
 	});
 
 	printf("starting fettemama 2.0 ...\n");
-
+	
 	auto server = lipido::WebServer();
+	server.addGetHandler("/test_get", test_handler);
+	server.addPostHandler("/test_post", test_handler);
 
 	server.addGetHandler("/", handleIndex);
 	server.addPostHandler("/new_post();", handleNewPost);
@@ -46,9 +44,10 @@ int main(int argc, char **argv) {
 	server.addGetHandler("/feed/rss2/", handleRSS);
 	server.addGetHandler("/feed/", handleRSS);
 
-	std::pair<std::string,unsigned short> if1 = std::make_pair("0.0.0.0", 80);
-	auto interfaces = std::vector<std::pair<std::string, unsigned short>>();
-	interfaces.push_back(if1);
+	auto interfaces = std::vector<std::pair<std::string, unsigned short>> { 
+		std::make_pair("0.0.0.0", lipido::cfg::listen_port),
+	};
+	
 	server.run(interfaces);
 }
 

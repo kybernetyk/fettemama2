@@ -6,7 +6,10 @@ namespace lipido {
 		const int run_as_gid = 1000;
 		const bool drop_uid = true;
 
-		const char rootdir[] = "/home/blog/fettemama2";
+		const int listen_port = 8001;
+
+		//const char rootdir[] = "/home/blog/fettemama2";
+		const char rootdir[] = "/Users/kyb/code/fettemama2";
 	}
 }
 

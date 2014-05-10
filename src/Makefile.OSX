@@ -3,8 +3,8 @@
 # 	brew install mysql-connector-c
 # needs clang (installed with xcode)
 CC=clang++
-LIBS=-lcurl -pthread -levent -L/usr/local/Cellar/mysql-connector-c/6.0.2/lib -lmysql -lmysqlclient -lpthread -lz -lm -lssl -lcrypto -ldl 
-CFLAGS=-std=c++11 -stdlib=libc++ -I/usr/local/Cellar/mysql-connector-c/6.0.2/include -fPIC -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -fno-strict-aliasing -DBIG_JOINS=1 -fomit-frame-pointer  -g
+LIBS=-lcurl -pthread -levent `mysql_config --libs` -lpthread -lz -lm -lssl -lcrypto -ldl 
+CFLAGS=-std=c++11 -stdlib=libc++ `mysql_config --include` -fPIC -pipe -fstack-protector --param=ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -fno-strict-aliasing -DBIG_JOINS=1 -fomit-frame-pointer  -g
 EXECNAME=blog
 
 .PHONY: all
