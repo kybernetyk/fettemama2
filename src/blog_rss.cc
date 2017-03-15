@@ -68,7 +68,7 @@ static lipido::WebResponse render_rss(lipido::WebContext &ctx, int limit = 0) {
 			body << "</link>";
 			
 			body << "<guid>";
-			body << "http://fettemama.org?pid=3000"; //3000.id so google will update lol
+			body << "http://fettemama.org?pid="; //3000.id so google will update lol
 			body << post["id"];
 			body << "</guid>";
 			
