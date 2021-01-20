@@ -8,16 +8,16 @@ namespace lipido {
 
 		const int listen_port = 8001;
 
-		//const char rootdir[] = "/home/blog/fettemama2";
-		const char rootdir[] = "/Users/kyb/code/fettemama2";
+		const char rootdir[] = "/home/kyb/src/fettemama2";
+		//const char rootdir[] = "/Users/kyb/code/fettemama2";
 	}
 }
 
 namespace cfg {
 	namespace db {
 		const char host[] = "localhost";
-		const char user[] = "root";
-		const char pass[] = "";
+		const char user[] = "donvito";
+		const char pass[] = "warbird";
 		const char dbname[] = "fettemama";
 	}
 }

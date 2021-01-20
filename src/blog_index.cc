@@ -10,23 +10,24 @@ static void render_head(std::stringstream &body) {
 	body << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//ENi\">";
 	body << "<html>";
 	body << "<head>";
-	body << "<link rel='alternate' type='application/rss+xml' title='RSS FEED DU AFFE' href='http://feeds.feedburner.com/FetteMama'>";
+	body << "<link rel='alternate' type='application/rss+xml' title='RSS FEED DU AFFE' href='/rss.xml'>";
 	body << "<title>fefemama.org - THE BEST BLOG IN THE UNIVERSE WRITTEN IN C++ :]</title>";
 //	body << "<body>";
-	body << "<script type=\"text/javascript\">var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-705689-1']);_gaq.push(['_setDomainName', 'fettemama.org']);_gaq.push(['_trackPageview']);(function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();</script>";
+//	body << "<script type=\"text/javascript\">var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-705689-1']);_gaq.push(['_setDomainName', 'fettemama.org']);_gaq.push(['_trackPageview']);(function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();</script>";
 	body << "</head>";
-	body << "<body link=#ffffff vlink=#ffffff alink=#ffff00 bgcolor=#000000 text=#00dd00>";
-	body << "<font face='terminal, system, monospace'>";
-	body << "<table><td width=800>";
+//	body << "<body link=#ffffff vlink=#ffffff alink=#ffff00 bgcolor=#000000 text=#00dd00>";
+//	body << "<font face='terminal, system, monospace'>";
+//	body << "<table><td width=800>";
 
 	body << "<h1><a href=/>Fefemama</a></h1>";
 	//body << "<b>I love the smell of nopslides in the morning ...</b>";
-	body << "<b>We are Samurai... the Keyboard Cowboys... and all those other people who have no idea what's going on are the cattle...</b>";
+	//body << "<b>We are Samurai... the Keyboard Cowboys... and all those other people who have no idea what's going on are the cattle...</b>";
+	body << "<b>Das Leitmedium der Petromaskulinitaet im deutschsprachigem Netz</b>";
 	
 	body << "<p align=right>Fragen? <a href=/faq.html>Antworten!</a><br>";
 	body << "<i>Einsendungen und Beschwerden bitte an blog@fettemama.org</i><br>";
-	body << "IRC: irc.hackint.eu | #fm<br>";
-	body << "Github: <a href=http://github.com/jsz/fettemama2>github.com/jsz/fettemama2</a></p>";
+	//body << "IRC: irc.hackint.eu | #fm<br>";
+	//body << "Github: <a href=http://github.com/jsz/fettemama2>github.com/jsz/fettemama2</a></p>";
 }
 
 static void render_ass(std::stringstream &body) {
