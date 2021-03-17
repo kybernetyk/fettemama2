@@ -127,7 +127,7 @@ not_found:
 		});
 
 		std::string s_uri(tmp_uri);
-		printf(">>> URI is %s\n", s_uri.c_str());
+		printf(">>> URI is '%s'\n", s_uri.c_str());
 
 		//prevent shit like /../../../etc/passwd
 		if (strstr(s_uri.c_str(), "..")) {
@@ -156,7 +156,7 @@ not_found:
 		}
 
 		if (!handler) {
-			printf(">>> no handler for URI %s found. 404\n", s_uri.c_str());
+			printf(">>> no handler for URI '%s' found. 404\n", s_uri.c_str());
 			evhttp_send_error(request, 404, "your face sucks");
 			return;
 		}

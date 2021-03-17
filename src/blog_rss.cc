@@ -11,7 +11,7 @@ static void render_head(std::stringstream &body) {
 	body << "<rss version='2.0'>";
 	body << "<channel>";
 	body << "<title>fefemama</title>";
-	body << "<link>http://fettemama.org</link>";
+	body << "<link>https://fettemama.org</link>";
 	body << "<description>Fefe liebt Spanferkel.jpg</description>";
 	body << "<language>de</language>";
 
@@ -63,18 +63,18 @@ static lipido::WebResponse render_rss(lipido::WebContext &ctx, int limit = 0) {
 			body << "]]></title>";
 			
 			body << "<link>";
-			body << "http://fettemama.org/?pid=";
+			body << "https://fettemama.org/?pid=";
 			body << post["id"];
 			body << "</link>";
 			
 			body << "<guid>";
-			body << "http://fettemama.org?pid=3000"; //3000.id so google will update lol
+			body << "https://fettemama.org?pid=3000"; //3000.id so google will update lol
 			body << post["id"];
 			body << "</guid>";
 			
 			body << "<pubDate>";
 			body << post["timestamp"];	
-			body << " +0200</pubDate>";
+			body << " +0000</pubDate>";
 			body << "</item>";
 	}
 	
